@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -42,8 +42,11 @@ class Recette(db.Model):
 
 @app.route("/")
 def home():
-    test  = 5
-    return test
+    return render_template('index.html')
+
+@app.route("/form")
+def form():
+    return render_template('pages/form.html')
 
 if __name__ == '__main__':
     with app.app_context():
