@@ -47,6 +47,9 @@ def home():
 @app.route("/form")
 def form():
     return render_template('pages/form.html')
+@app.route("/data")
+def data():
+    return render_template('pages/data.html')
 
 if __name__ == '__main__':
     with app.app_context():
