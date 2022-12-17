@@ -1,0 +1,120 @@
+{% extends 'index.html' %}
+{% block  content %}
+
+
+<div class="container m-3 d-flex justify-content-between" id="right-panel">
+    <div class="row m-1 p-3 border border-dark col-3">
+        <div class="row m-1">
+            <h3 class="d-block">Solde :</h3>
+            <h3 class="d-block">120 000 cfa</h3>
+        </div>
+    </div>
+    <div class="">
+        <button class="btn btn-success m-1 p-3" type="button">+ Ajouter</button>
+    </div>
+</div>
+
+
+                    <div class="globale">
+                        <div class="begin"> <h6>début</h6></div>
+
+                    <div class="bloc">
+                                <input aria-describedby="cc-name-error" aria-invalid="false" aria-required="true" autocomplete="cc-name"
+                                       class="form-control cc-name valid" data-val="true" data-val-required="Saisissez le montant"
+                                       id="cc-name" name="cc-name" type="date" class="bloc">
+                    </div>
+                    <div class="bloc-gauche">
+                                <input aria-describedby="cc-name-error" aria-invalid="false" aria-required="true" autocomplete="cc-name"
+                                       class="form-control cc-name valid" data-val="true" data-val-required="Saisissez le montant"
+                                       id="cc-names" name="cc-name" type="date" class="bloc">
+                    </div>
+                      <div class="end"> <h6>fin</h6></div>
+
+                        <div>
+                            <button type="button" class="filtre" class="btn btn-danger btn-lg">Filtrer</button>
+                        </div>
+
+                          <div class="prime">
+
+                    </div>
+                    <div class="prime">
+                        <select class="form-control" id="select" name="select">
+                            <option>Imprimer</option>
+                            <option value="1">PDF</option>
+                            <option value="2">EXCEL</option>
+                            <option value="3"></option>
+                        </select>
+                    </div>
+                    </div>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Data Table</strong>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered" id="bootstrap-data-table-export">
+
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Plan Comptable</th>
+                        <th>Montant en Chiffre</th>
+                        <th>Service</th>
+                         <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Tiger Nixon</td>
+                        <td>System Architect</td>
+                        <td>Edinburgh</td>
+                        <td>$320,800</td>
+                        <td>
+                            <a href="#" class="icon-voir"><i class="fa fa-eye"></i></a>
+                            <a href="#" class="icon-editer"><i class="fa fa-edit" class="editer"></i></a>
+                            <a href="#" class="icon-poubelle" ><i class="fa fa-trash-o" ></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Garrett Winters</td>
+                        <td>Accountant</td>
+                        <td>Tokyo</td>
+                        <td>$170,750</td>
+                        <td>
+                            <a href="#" class="icon-voir"><i class="fa fa-eye"></i></a>
+                            <a href="#" class="icon-editer"><i class="fa fa-edit" class="editer"></i></a>
+                            <a href="#" class="icon-poubelle" ><i class="fa fa-trash-o" ></i></a>
+                        </td>
+                     </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!--Script data table-->
+    <script src="./static/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="./static/vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="./static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./static/assets/js/main.js"></script>
+
+
+    <script src="./static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="./static/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="./static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="./static/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+    <script src="./static/vendors/jszip/dist/jszip.min.js"></script>
+    <script src="./static/vendors/pdfmake/build/pdfmake.min.js"></script>
+    <script src="./static/vendors/pdfmake/build/vfs_fonts.js"></script>
+    <script src="./static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="./static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="./static/vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+    <script src="./static/assets/js/init-scripts/data-table/datatables-init.js"></script>
+</div>
+
+
+{% endblock %}
