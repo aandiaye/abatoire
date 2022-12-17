@@ -1,0 +1,65 @@
+{% extends './pages/form.html' %}
+{% block form %}
+<div class="card-body col-8 m-auto">
+    <!-- Credit Card -->
+    <div id="pay-invoice">
+        <div class="card-body">
+            <h1>Ajout d'une dépense</h1>
+            <hr>
+            <form action="" method="post" novalidate="novalidate">
+
+                <div class="form-group">
+                    <label class="control-label mb-1" for="plan-comptable">Plan comptable</label>
+                    <input aria-invalid="false" aria-required="true" class="form-control" id="plan-comptable"
+                           name="plan-comptable" type="text">
+                </div>
+                <div>
+                    <div class="form-group has-success">
+                        <label class="control-label mb-1" for="cc-name">Montant en Chiffre</label>
+                        <input aria-describedby="cc-name-error" aria-invalid="false" aria-required="true" autocomplete="cc-name"
+                               class="form-control cc-name valid" data-val="true" data-val-required="Saisissez le montant"
+                               id="cc-name" name="cc-name" type="number">
+                        <span class="help-block field-validation-valid" data-valmsg-for="cc-name"
+                              data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label mb-1" for="beneficiaire">Béneficiaire</label>
+                        <input autocomplete="beneficiaire" class="form-control beneficiaire" data-val="true" data-val-cc-number="Donnez le motif de la dépense"
+                               data-val-required="Donnez le motif de la dépense" id="beneficiaire" name="beneficiaire"
+                               type="text" value="">
+                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label mb-1" for="cc-number">Motif</label>
+                        <input autocomplete="cc-number" class="form-control cc-number identified visa" data-val="true"
+                               data-val-cc-number="Donnez le motif de la dépense" data-val-required="Donnez le motif de la dépense" id="cc-number"
+                               name="cc-number"
+                               type="text" value="">
+                        <span class="help-block" data-valmsg-for="cc-number" data-valmsg-replace="true"></span>
+                    </div>
+
+
+                    <div class="">
+                        <label class=" form-control-label" for="select">Services</label>
+                    </div>
+                    <div class="mb-2">
+                        <select class="form-control" id="select" name="select">
+                            <option value="0">Choix</option>
+                            <option value="1">Option #1</option>
+                            <option value="2">Option #2</option>
+                            <option value="3">Option #3</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <button class="btn btn-lg btn-success btn-block" id="payment-button" type="submit">
+                            <span id="payment-button-amount">Ajouter</span>
+                            <span id="payment-button-sending" style="display:none;">Sending…</span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
