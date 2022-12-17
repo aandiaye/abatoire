@@ -64,7 +64,23 @@ def service_depense():
     return render_template('pages/service_depense.html')
 
 
+@app.route("/service")
+def service():
+    return render_template('pages/service.html')
+
+@app.route("/form_depense")
+def form_depense():
+    return render_template('pages/form_depense.html')
+
+@app.route("/form_recette")
+def form_recette():
+    return render_template('pages/form_recette.html')
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+<<<<<<< HEAD
     app.run(debug=True)
+=======
+    app.run(debug=True)
+>>>>>>> main

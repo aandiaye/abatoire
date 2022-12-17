@@ -5,6 +5,7 @@
 }
 .nav-pills > a.ac.active {
 background-color:green;
+<<<<<<< HEAD
 }
 
 
@@ -93,4 +94,6 @@ color: red!important;
 position: relative!important;
 left:15px !important;
 color: blue!important;
+=======
+>>>>>>> main
 }
