@@ -5,4 +5,95 @@
 }
 .nav-pills > a.ac.active {
 background-color:green;
+<<<<<<< HEAD
+}
+
+
+.button{
+background: blue !important;
+position: relative !important;
+left:350px !important;
+top: 14px !important;
+width:100px !important;
+font-size: 20px !important;
+color: White !important;
+border-color: blue !important;
+}
+
+.buttonner{
+background: gray !important;
+position: relative !important;
+right:400px !important;
+width:100px !important;
+font-size: 20px !important;
+color: White !important;
+border-color: gray !important;
+
+}
+
+.bloc{
+width:150px !important;
+position: relative!important;
+left: 70px!important;
+top:50px !important;
+}
+
+.bloc-gauche{
+width:150px !important;
+position: relative!important;
+left: 270px!important;
+top:10px !important;
+
+}
+
+.begin{
+position: relative!important;
+top:82px !important;
+left:15px !important;
+font-size:15px!important;
+}
+.end{
+position: relative!important;
+left:230px !important;
+font-size:15px!important;
+top:-12px !important;
+}
+.filtre{
+background:#F0E68C !important;
+width:100px !important;
+font-size: 20px !important;
+color: White !important;
+border-color:#F0E68C!important;
+position: relative!important;
+left:500px !important;
+top: -50px !important;
+}
+
+.prime{
+width:150px !important;
+position: relative!important;
+left:850px !important;
+top: -90px !important;
+
+}
+.prime select{
+color: withe !important;
+}
+
+.globale{
+position: relative!important;
+top:70px!important;
+}
+.icon-poubelle{
+position: relative!important;
+left:30px !important;
+color: red!important;
+}
+
+.icon-editer{
+position: relative!important;
+left:15px !important;
+color: blue!important;
+=======
+>>>>>>> main
 }
