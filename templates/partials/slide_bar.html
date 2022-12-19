@@ -1,6 +1,7 @@
 <!-- Left Panel -->
 
 <aside class="left-panel bg-dark text-white" id="left-panel">
+
     <nav class="navbar navbar-expand-sm navbar-default bg-dark text-white">
 
         <div class="navbar-header">
@@ -14,10 +15,17 @@
         </div>
 
 
-        <div aria-orientation="vertical" class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
-            <a aria-controls="v-pills-home" aria-selected="true" class="nav-link active bg-nav-link" data-toggle="pill"
-               href="#v-pills-home"
-               id="v-pills-home-tab" role="tab">
+        <div aria-orientation="vertical" class="nav flex-column nav-pills" role="tablist">
+            <a aria-controls="v-pills-home" aria-selected="false" class="nav-link active bg-nav-link d-flex"
+               data-toggle=""
+               href="#"
+               role="tab">
+
+                &nbsp;<h3>Dashbord</h3>
+
+            </a>
+            <a aria-controls="v-pills-abattage" aria-selected="true" class="nav-link  bg-nav-link d-flex" data-toggle=""
+               href="{{url_for('abattage')}}" role="tab">
                 <svg class="feather feather-file" fill="none" height="24" stroke="currentColor"
                      stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
@@ -28,9 +36,9 @@
                 &nbsp;
                 Abattage
             </a>
-            <a aria-controls="v-pills-profile" aria-selected="false" class="nav-link bg-nav-link" data-toggle="pill"
-               href="#v-pills-profile"
-               id="v-pills-profile-tab" role="tab">
+            <a aria-controls="v-pills-profile" aria-selected="false" class="nav-link bg-nav-link" data-toggle=""
+               href="{{url_for('betail')}}"
+               role="tab">
                 <svg class="feather feather-file" fill="none" height="24" stroke="currentColor"
                      stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
@@ -38,26 +46,30 @@
                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                     <polyline points="13 2 13 9 20 9"></polyline>
                 </svg>&nbsp;Bétails</a>
-            <a aria-controls="v-pills-messages" aria-selected="false" class="nav-link bg-nav-link" data-toggle="pill"
-               href="#v-pills-messages"
-               id="v-pills-messages-tab" role="tab">
+            <a aria-controls="v-pills-messages" aria-selected="false" class="nav-link bg-nav-link" data-toggle=""
+               href="{{url_for('loyer')}}"
+               role="tab">
                 <svg class="feather feather-file" fill="none" height="24" stroke="currentColor"
                      stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
                      xmlns="http://www.w3.org/2000/svg">
                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                     <polyline points="13 2 13 9 20 9"></polyline>
-                </svg>&nbsp;Loyer</a>
-            <a aria-controls="v-pills-settings" aria-selected="false" class="nav-link bg-nav-link" data-toggle="pill"
-               href="#v-pills-settings"
-               id="v-pills-settings-tab" role="tab">
+                </svg>&nbsp
+                Loyer
+            </a>
+            <a aria-controls="v-pills-settings" aria-selected="false" class="nav-link bg-nav-link" data-toggle=""
+               href="{{url_for('generale')}}"
+               id="" role="tab">
                 <svg class="feather feather-file" fill="none" height="24" stroke="currentColor"
                      stroke-linecap="round"
                      stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
                      xmlns="http://www.w3.org/2000/svg">
                     <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
                     <polyline points="13 2 13 9 20 9"></polyline>
-                </svg>&nbsp;Générale</a>
+                </svg>&nbsp;
+                Générale</a>
+
         </div>
     </nav>
 </aside><!-- /#left-panel -->

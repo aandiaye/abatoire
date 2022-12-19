@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -59,6 +59,34 @@ def form_depense():
 @app.route("/form_recette")
 def form_recette():
     return render_template('pages/form_recette.html')
+
+@app.route("/depense")
+def service_depense():
+    return render_template('pages/tab_depense.html')
+
+@app.route("/recette")
+def service_recette():
+    return render_template('pages/tab_recette.html')
+
+'''Les pages services'''
+@app.route("/abattage")
+def abattage():
+    return render_template('pages/abattage.html')
+
+@app.route("/betail")
+def betail():
+    return render_template('pages/betail.html')
+
+@app.route("/loyer")
+def loyer():
+    return render_template('pages/loyer.html')
+
+@app.route("/generale")
+def generale():
+    return render_template('pages/generale.html')
+
+'''Les pages services'''
+
 
 if __name__ == '__main__':
     with app.app_context():

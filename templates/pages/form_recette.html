@@ -1,56 +1,54 @@
 {% extends './pages/form.html' %}
 {% block form %}
-<div class="card-body col-8 m-auto">
-    <!-- Credit Card -->
-    <div id="pay-invoice">
-        <div class="card-body">
-            <h1>Ajout d'une recette</h1>
-            <hr>
-            <form action="" method="post" novalidate="novalidate">
-
-                <div class="form-group">
-                    <label class="control-label mb-1" for="plan-comptable">Plan
-                        Comptable</label>
-                    <input aria-invalid="false" aria-required="true" class="form-control"
-                           id="plan-comptable"
-                           name="plan-comptable" type="text">
-                </div>
-                <div>
-                    <div class="form-group has-success">
-                        <label class="control-label mb-1" for="cc-name">Montant en
-                            Chiffre</label>
-                        <input aria-describedby="cc-name-error" aria-invalid="false"
-                               aria-required="true" autocomplete="cc-name"
-                               class="form-control cc-name valid" data-val="true"
-                               data-val-required="Saisissez le montant"
-                               id="cc-name" name="cc-name" type="number">
-                        <span class="help-block field-validation-valid"
-                              data-valmsg-for="cc-name"
-                              data-valmsg-replace="true"></span>
-                    </div>
-                    <div class="">
-                        <label class=" form-control-label" for="select">Services</label>
-                    </div>
-                    <div class="mb-2">
-                        <select class="form-control" id="select" name="select">
-                            <option value="0">Choix</option>
-                            <option value="1">Option #1</option>
-                            <option value="2">Option #2</option>
-                            <option value="3">Option #3</option>
-                        </select>
-                    </div>
-
-                    <div class="mt-5">
-                        <button class="btn btn-lg btn-success btn-block" id="payment-button"
-                                type="submit">
-                            <span id="payment-button-amount">Ajouter</span>
-                            <span id="payment-button-sending"
-                                  style="display:none;">Sending…</span>
-                        </button>
-                    </div>
-                </div>
-            </form>
+<div class="col-lg-10 mt-3  ml-5">
+    <div class="card ml-5">
+        <div class="card-header">
+            <strong class="card-title">Ajout d'une recette</strong>
         </div>
-    </div>
+        <div class="card-body">
+            <!-- Credit Card -->
+            <div id="pay-invoice">
+                <div class="card-body">
+
+                    <form action="" method="post" novalidate="novalidate">
+
+                        <div class="form-group">
+                            <label class="control-label" for="plan_compta">Plan comptable</label>
+                            <input aria-invalid="false" aria-required="true" class="form-control" id="plan_compta"
+                                   name="plan_compta" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="montant">Montant en chiffre</label>
+                            <input autocomplete="cc-number" class="form-control" data-val="true"
+                                   data-val-cc-number="Please enter a valid card number"
+                                   data-val-required="Please enter the card number" id="montant" name="montant"
+                                   type="number" value="">
+
+                        </div>
+
+                        <div class="mb-2">
+                            <select class="form-control" id="select" name="select">
+                                <option value="0">Choix</option>
+                                <option value="1">Abattage</option>
+                                <option value="2">Bétail</option>
+                                <option value="3">Loyer</option>
+                                <option value="3">Générale</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-success me-md-2 mr-5 rounded" type="button">Enregistrer</button>
+                            <button class="btn btn-danger mr-5 rounded" type="button">Annuler</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div> <!-- .card -->
+
 </div>
 {% endblock %}
