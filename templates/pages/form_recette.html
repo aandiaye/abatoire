@@ -1,0 +1,54 @@
+{% extends './pages/form.html' %}
+{% block form %}
+<div class="col-lg-10 mt-3  ml-5">
+    <div class="card ml-5">
+        <div class="card-header">
+            <strong class="card-title">Ajout d'une recette</strong>
+        </div>
+        <div class="card-body">
+            <!-- Credit Card -->
+            <div id="pay-invoice">
+                <div class="card-body">
+
+                    <form action="" method="post" novalidate="novalidate">
+
+                        <div class="form-group">
+                            <label class="control-label" for="plan_compta">Plan comptable</label>
+                            <input aria-invalid="false" aria-required="true" class="form-control" id="plan_compta"
+                                   name="plan_compta" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="montant">Montant en chiffre</label>
+                            <input autocomplete="cc-number" class="form-control" data-val="true"
+                                   data-val-cc-number="Please enter a valid card number"
+                                   data-val-required="Please enter the card number" id="montant" name="montant"
+                                   type="number" value="">
+
+                        </div>
+
+                        <div class="mb-2">
+                            <select class="form-control" id="select" name="select">
+                                <option value="0">Choix</option>
+                                <option value="1">Abattage</option>
+                                <option value="2">Bétail</option>
+                                <option value="3">Loyer</option>
+                                <option value="3">Générale</option>
+                            </select>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button class="btn btn-success me-md-2 mr-5 rounded" type="button">Enregistrer</button>
+                            <button class="btn btn-danger mr-5 rounded" type="button">Annuler</button>
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div> <!-- .card -->
+
+</div>
+{% endblock %}
