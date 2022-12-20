@@ -1,5 +1,10 @@
+<<<<<<< Updated upstream
 from flask import Flask, render_template, request, redirect
 from datetime import datetime
+=======
+from flask import Flask, render_template, flash
+from flask import  request
+>>>>>>> Stashed changes
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -16,6 +21,8 @@ class Users(db.Model):
     identifiant = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+
 
 
 
@@ -52,6 +59,22 @@ class Recette(db.Model):
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'))
 
 
+<<<<<<< Updated upstream
+=======
+@app.route("/add_service", methods=["GET", "POST"])
+def add_service():
+    if request.method == "POST":
+        service = Service(
+            service=request.form["firstname"])
+        db.session.add(service)
+        db.session.commit()
+        flash("You are registered and can now login", "success")
+        # return redirect(url_for('login'))
+    else:
+        flash("user already existed, please login or contact admin", "danger")
+
+
+>>>>>>> Stashed changes
 @app.route("/")
 def home():
     return render_template('index.html')
