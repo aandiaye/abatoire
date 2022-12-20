@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, flash
 from flask import  request
 from flask_sqlalchemy import SQLAlchemy
 
@@ -10,10 +10,13 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 # initialize the app with the extension
 db.init_app(app)
 
+
 class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     identifiant = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
+
+
 
 
 class Service(db.Model):
@@ -21,6 +24,7 @@ class Service(db.Model):
     service = db.Column(db.String(255), nullable=False)
     depense = db.relationship('service', backref='depense')
     recette = db.relationship('service', backref='recette')
+
 
 
 class Depense(db.Model):
@@ -39,6 +43,18 @@ class Recette(db.Model):
     montant = db.Column(db.Integer, nullable=False)
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'))
 
+
+@app.route("/add_service", methods=["GET", "POST"])
+def add_service():
+    if request.method == "POST":
+        service = Service(
+            service=request.form["firstname"])
+        db.session.add(service)
+        db.session.commit()
+        flash("You are registered and can now login", "success")
+        # return redirect(url_for('login'))
+    else:
+        flash("user already existed, please login or contact admin", "danger")
 
 
 @app.route("/")
