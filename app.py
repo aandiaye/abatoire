@@ -1,10 +1,8 @@
-<<<<<<< Updated upstream
 from flask import Flask, render_template, request, redirect
 from datetime import datetime
-=======
 from flask import Flask, render_template, flash
 from flask import  request
->>>>>>> Stashed changes
+
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
@@ -59,8 +57,7 @@ class Recette(db.Model):
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'))
 
 
-<<<<<<< Updated upstream
-=======
+
 @app.route("/add_service", methods=["GET", "POST"])
 def add_service():
     if request.method == "POST":
@@ -74,7 +71,7 @@ def add_service():
         flash("user already existed, please login or contact admin", "danger")
 
 
->>>>>>> Stashed changes
+
 @app.route("/")
 def home():
     return render_template('index.html')
