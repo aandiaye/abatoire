@@ -6,6 +6,7 @@
     {% include './pages/under_nav.html'%}
 <!--under nav-->
 <h3>Vous êtes sur : {{ request.path }}</h3>
+
 <div class="container m-3 d-flex justify-content-between" id="right-panel">
     <div class="row m-1 p-3 border border-dark col-3">
         <div class="row m-1">
@@ -16,13 +17,13 @@
     </div>
 
     <div class="">
-        {% if request.path == '/recette' or '/abattage' %}
+        {%if request.path=='/recette'  %}
             <a href="{{url_for('form_recette')}}">
-                <button class="btn btn-success m-1 p-3" type="button">+ Ajouter</button>
+                <button class="btn btn-success m-1 p-3 rounded" type="button">+ Ajouter</button>
             </a>
         {% elif request.path == '/depense' %}
             <a href="{{url_for('form_depense')}}">
-                <button class="btn btn-success m-1 p-3" type="button">+ Ajouter</button>
+                <button class="btn btn-success m-1 p-3 rounded" type="button">+ Ajouter</button>
             </a>
         {% endif %}
     </div>
@@ -35,7 +36,7 @@
             <div class="card-header ">
                 <div class="d-flex justify-content-between ">
                     <div class="d-flex">
-                        <label for="date-debut"><h3>Début</h3></label>
+                        <label for="date-debut"><h3>Début </h3></label>
                         <input aria-describedby="cc-name-error" aria-invalid="false" aria-required="true"
                                autocomplete="cc-name"
                                class="form-control cc-name valid" data-val="true"
@@ -43,7 +44,7 @@
                     </div>
 
                     <div class=" d-flex">
-                        <label for="date-fin"><h3>Début</h3></label>
+                        <label for="date-fin"><h3>Fin </h3></label>
                         <input aria-describedby="cc-name-error" aria-invalid="false" aria-required="true"
                                autocomplete="cc-name"
                                class="form-control cc-name valid" data-val="true"
@@ -57,9 +58,8 @@
                     <div class="">
                         <select class="form-control" id="" name="select">
                             <option>Imprimer</option>
-                            <option value="1">PDF</option>
-                            <option value="2">EXCEL</option>
-                            <option value="3"></option>
+                            <option value="1">Pdf</option>
+                            <option value="2">Excel</option>
                         </select>
                     </div>
                 </div>
