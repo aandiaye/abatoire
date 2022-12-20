@@ -17,15 +17,11 @@
     </div>
 
     <div class="">
-        {%if request.path=='/recette' or request.path=='/abattage' %}
+
             <a href="{{url_for('form_recette')}}">
                 <button class="btn btn-success m-1 p-3 rounded" type="button">+ Ajouter</button>
             </a>
-        {% elif request.path == '/depense' %}
-            <a href="{{url_for('form_depense')}}">
-                <button class="btn btn-success m-1 p-3 rounded" type="button">+ Ajouter</button>
-            </a>
-        {% endif %}
+
     </div>
 </div>
 
