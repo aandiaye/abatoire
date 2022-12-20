@@ -21,10 +21,6 @@ class Users(db.Model):
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 
-
-
-
-
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     service = db.Column(db.String(255), nullable=False)
@@ -41,11 +37,7 @@ class Depense(db.Model):
     motif = db.Column(db.String(255), nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'))
-    def __init__(self, plan_compta,beneficiaire,montant,motif,date):
-        self.plan_compta = plan_compta
-        self.beneficiaire = beneficiaire
-        self.montant = montant
-        self.motif = motif
+
 
 
 
@@ -62,7 +54,7 @@ class Recette(db.Model):
 def add_service():
     if request.method == "POST":
         service = Service(
-            service=request.form["firstname"])
+        service=request.form["service"])
         db.session.add(service)
         db.session.commit()
         flash("You are registered and can now login", "success")
