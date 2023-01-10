@@ -95,3 +95,34 @@ left:15px !important;
 color: blue!important;
 
 }
+
+.gauche{
+position: relative!important;
+left:-225px !important;
+}
+
+.identification{
+width: 150px!important;
+position:relative!important;
+top:-15px!important;
+
+}
+
+.user{
+width:400px:!important;
+position: relative!important;
+left:-150px!important;
+
+}
+
+.submit-button{
+position:relative!important;
+top:15px!important;
+left:30px!important;
+}
+
+.password{
+width: 150px!important;
+position:relative!important;
+top:-9px!important;
+}

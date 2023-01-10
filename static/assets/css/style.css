@@ -2460,3 +2460,12 @@ header .form-inline {
         .right-panel .content #bootstrap-data-table_wrapper .table td,
         .right-panel .content #bootstrap-data-table_wrapper .table th {
           padding: 5px; } }
+
+
+.nav-link:hover{
+background-color: #4F5165;
+opacity:0.4;
+color:white}
+
+.nav-link{
+color:white}

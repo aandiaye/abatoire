@@ -5,12 +5,8 @@
     <nav class="navbar navbar-expand-sm navbar-default bg-dark text-white">
 
         <div class="navbar-header">
-            <button aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler"
-                    data-target="#main-menu" data-toggle="collapse" type="button">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand" href="./"><img alt="Logo" src="static/images/logo.png"></a>
+
+            <a class="navbar-brand" href="./"> AFAM &nbsp  <img alt="Logo" src="static/images/logoAFAM.jpg" width="50px"></a>
             <a class="navbar-brand hidden" href="./"><img alt="Logo" src="static/images/logo2.png"></a>
         </div>
 
@@ -20,55 +16,35 @@
                data-toggle=""
                href="#"
                role="tab">
-
-                &nbsp;<h3>Dashbord</h3>
+                <h3>Dashbord</h3>
 
             </a>
             <a aria-controls="v-pills-abattage" aria-selected="true" class="nav-link  bg-nav-link d-flex" data-toggle=""
-               href="{{url_for('abattage')}}" role="tab">
-                <svg class="feather feather-file" fill="none" height="24" stroke="currentColor"
-                     stroke-linecap="round"
-                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                    <polyline points="13 2 13 9 20 9"></polyline>
-                </svg>
-                &nbsp;
-                Abattage
+               href="{{url_for('tab_afficher_depense_abattage')}}"
+                role="tab">
+                <i class="fa fa-sitemap"></i>
+                  &nbsp Abattage
             </a>
             <a aria-controls="v-pills-profile" aria-selected="false" class="nav-link bg-nav-link" data-toggle=""
-               href="{{url_for('betail')}}"
+               href="{{url_for('tab_afficher_depense')}}"
                role="tab">
-                <svg class="feather feather-file" fill="none" height="24" stroke="currentColor"
-                     stroke-linecap="round"
-                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                    <polyline points="13 2 13 9 20 9"></polyline>
-                </svg>&nbsp;Bétails</a>
+                <i class="fa fa-leaf"></i>
+               &nbsp Bétails</a>
             <a aria-controls="v-pills-messages" aria-selected="false" class="nav-link bg-nav-link" data-toggle=""
+<<<<<<< Updated upstream
                href="{{url_for('list_recette')}}"
+=======
+               href="{{url_for('tab_afficher_depense_loyer')}}"
+>>>>>>> Stashed changes
                role="tab">
-                <svg class="feather feather-file" fill="none" height="24" stroke="currentColor"
-                     stroke-linecap="round"
-                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                    <polyline points="13 2 13 9 20 9"></polyline>
-                </svg>&nbsp
-                Loyer
+                <i class="fa fa-key"></i>
+                &nbsp Loyer
             </a>
             <a aria-controls="v-pills-settings" aria-selected="false" class="nav-link bg-nav-link" data-toggle=""
-               href="{{url_for('generale')}}"
+               href=""
                id="" role="tab">
-                <svg class="feather feather-file" fill="none" height="24" stroke="currentColor"
-                     stroke-linecap="round"
-                     stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24"
-                     xmlns="http://www.w3.org/2000/svg">
-                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
-                    <polyline points="13 2 13 9 20 9"></polyline>
-                </svg>&nbsp;
-                Générale</a>
+                 <i class="fa fa-tags"></i>
+                &nbsp Générale</a>
 
         </div>
     </nav>
