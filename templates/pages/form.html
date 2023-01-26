@@ -1,0 +1,230 @@
+{% extends 'index.html' %}
+{% block  content %}
+
+<!-- CSS only -->
+
+<!--under nav-->
+<div class="breadcrumbs  ">
+    <div class="col-sm-5 mt-3">
+        <div class="page-header float-right">
+
+            <a href="{{url_for('tab_recette_loyer')}}">
+                <button class="btn btn-primary rounded" type="button">Recette</button>
+            </a>
+
+        </div>
+    </div>
+
+
+    <div class="col-sm-2 mt-3">
+        <div class="page-header float-right">
+            <a href="{{url_for('tab_depense_loyer')}}">
+                <button class="btn btn-secondary rounded" type="button">Depenses</button>
+            </a>
+
+        </div>
+    </div>
+</div>
+<!--under nav-->
+<h3>Vous êtes sur : {{ request.path }}</h3>
+
+<div class="container m-3 d-flex justify-content-between" id="right-panel">
+    <div class="row m-1 p-3 border border-dark col-3">
+        <div class="row m-1">
+            <h3 class="d-block">Solde :</h3>
+            <!--Lorsqu'on aura des elements dans la base de donnée, le solde sera remplacé par solde de chaque section-->
+            <h3 class="d-block">120 000 cfa</h3>
+        </div>
+    </div>
+
+    <!--boutton ajouter-->
+    <div class="">
+        <a href="{{url_for('form_ajout_recette_loyer')}}">
+            <button class="btn btn-success m-1 p-3 rounded" type="button">+ Ajouter</button>
+        </a>
+    </div>
+
+    <!--boutton ajouter-->
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 ">
+        <div class="card ">
+            <div class="card-header ">
+
+                <div class="col-md-4">
+                    <label for="inputState" class="form-label">Imprimer</label>
+                    <select id="inputState" class="form-select">
+                        <option selected>Pdf</option>
+                        <option>Excel</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="card-body ">
+<!--<div class="card-body ">-->
+<!--                &lt;!&ndash;Table&ndash;&gt;-->
+<!--                {% if depenses %}-->
+<!--                <table class="table table-striped table-bordered" id="bootstrap-data-table-export">-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>Date</th>-->
+<!--                        <th>Plan Comptable</th>-->
+<!--                        <th>Bénéficiaire</th>-->
+<!--                        <th>Montant en Chiffre</th>-->
+<!--                        <th>Service</th>-->
+<!--                        <th>Action</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    {% for depense in depenses %}-->
+<!--                    <tr>-->
+<!--                        <td>{{depense.date}}</td>-->
+<!--                        <td>{{depense.plan_compta}}</td>-->
+<!--                        <td>{{depense.beneficiaire}}</td>-->
+<!--                        <td>{{depense.montant}}</td>-->
+<!--                        <td>{{depense.service_id}}</td>-->
+<!--                        <td>-->
+<!--                            &lt;!&ndash; Voir &ndash;&gt;-->
+<!--                            <button class="" data-target="#voir" data-toggle="modal" type="button">-->
+<!--                                <i class="fa fa-eye"></i>-->
+<!--                            </button>-->
+<!--                            <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade"-->
+<!--                                 data-bs-backdrop="static" data-bs-keyboard="false" id="voir"-->
+<!--                                 tabindex="-1">-->
+<!--                                <div class="modal-dialog">-->
+<!--                                    <div class="modal-content">-->
+<!--                                        <div class="modal-header">-->
+<!--                                            <h5 class="modal-title">Observation</h5>-->
+<!--                                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"-->
+<!--                                                    type="button"></button>-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-body">-->
+<!--                                            ...-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-footer">-->
+<!--                                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">-->
+<!--                                                Fermer-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Fin modal &ndash;&gt;-->
+
+<!--                            &lt;!&ndash; Editer &ndash;&gt;-->
+<!--                            <button>-->
+<!--                                <a href="{{url_for('modifier_depense_loyer',depense_id=depense.id)}}"><i class="fa fa-edit"></i></a>-->
+<!--                            </button>-->
+
+
+<!--                            &lt;!&ndash; Supprimer &ndash;&gt;-->
+
+<!--                            <button class="" data-target="#supprimer" data-toggle="modal" type="button">-->
+<!--                                <i class="fa fa-trash-o"></i>-->
+<!--                            </button>-->
+
+<!--                            <div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade"-->
+<!--                                 data-bs-backdrop="static" data-bs-keyboard="false" id="supprimer"-->
+<!--                                 tabindex="-1">-->
+<!--                                <div class="modal-dialog">-->
+<!--                                    <div class="modal-content">-->
+<!--                                        <div class="modal-header">-->
+<!--                                            <h5 class="modal-title" id="staticBackdropLabel">Suppression</h5>-->
+<!--                                            <button aria-label="Close" class="btn-close" data-bs-dismiss="modal"-->
+<!--                                                    type="button"></button>-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-body">-->
+<!--                                            Attention vous vous appretez a supprimer l'élement-->
+<!--                                        </div>-->
+<!--                                        <div class="modal-footer">-->
+<!--                                            <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">-->
+<!--                                                <a href="#">Fermer</a>-->
+<!--                                            </button>-->
+<!--                                            <button class="btn btn-danger font-white" data-bs-dismiss="modal"-->
+<!--                                                    type="submit"><a-->
+<!--                                                    href="/delete/{{depense.id}}">Supprimer</a>-->
+<!--                                            </button>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            &lt;!&ndash; Fin modal &ndash;&gt;-->
+
+<!--                        </td>-->
+
+<!--                        </td>-->
+<!--                    </tr>-->
+
+<!--                    {% endfor %}-->
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--                {% else %}-->
+<!--                <p>Vous n'avez rien ajouté pour le moment moment</p>-->
+
+<!--                {% endif %}-->
+<!--                &lt;!&ndash;Fin Table&ndash;&gt;-->
+
+<!--            </div>-->
+            <!--Table-->
+            {% block table %}
+            <table class="table table-striped table-bordered" id="bootstrap-data-table-export">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Plan Comptable</th>
+                    <th>Montant en Chiffre</th>
+                    <th>Service</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                {% for recette in recettes %}
+                <tbody>
+                <tr>
+                    <td>{{recette.date}}</td>
+                    <td>{{ recette.plan_compta}}</td>
+                    <td>{{ recette.montant}}</td>
+                    <td>{{ recette.service_id}}</td>
+
+                    <td>
+                        <a class="icon-trash" href="{{url_for('delete_recette_loyer', recette_id=recette.id) }}" onclick="return confirm('Êtes vous de vouloir supprimer  ?')"><i class="fa fa-trash"></i></a>
+                        <a class="icon-editer" href="{{ url_for('modifier_recette_loyer', recette_id=recette.id) }}"> <i class="fa fa-edit"></i></a>
+                    </td>
+
+
+                </tr>
+
+                </tbody>
+                {% endfor %}
+            </table>
+
+            {% endblock %}
+            <!--Fin Table-->
+
+
+        </div>
+    </div>
+</div>
+
+<!--Script data table-->
+<script src="./static/vendors/jquery/dist/jquery.min.js"></script>
+<script src="./static/vendors/popper.js/dist/umd/popper.min.js"></script>
+<script src="./static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="./static/assets/js/main.js"></script>
+
+
+<script src="./static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="./static/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="./static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="./static/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+<script src="./static/vendors/jszip/dist/jszip.min.js"></script>
+<script src="./static/vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="./static/vendors/pdfmake/build/vfs_fonts.js"></script>
+<script src="./static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="./static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="./static/vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
+<script src="./static/assets/js/init-scripts/data-table/datatables-init.js"></script>
+
+
+{% endblock %}
