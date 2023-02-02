@@ -7,7 +7,6 @@ app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///project.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///project.db"
 app.config['SECRET_KEY'] = 'mysecretkey'
 db.init_app(app)
 
@@ -16,17 +15,15 @@ class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     identifiant = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
+    date = db.Column(db.String(10), nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
+
 
 
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     service = db.Column(db.String(20))
-    depense = db.relationship('Depense', backref='service', lazy=True)
-    recette = db.relationship('Recette', backref='service', lazy=True)
-    service = db.Column(db.String(255), nullable=False)
     depense = db.relationship('Depense', backref='service')
-    recette = db.relationship('Recette', backref='Service')
+    recette = db.relationship('Recette', backref='service')
 
 
 class Depense(db.Model):
@@ -35,52 +32,18 @@ class Depense(db.Model):
     beneficiaire = db.Column(db.Integer, nullable=False)
     montant = db.Column(db.Integer, nullable=False)
     motif = db.Column(db.String(255), nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'))
     type_table = db.Column(db.String(10), default='depense')
+    date = db.Column(db.String(10), nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
 
 
 class Recette(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     plan_compta = db.Column(db.Integer, nullable=False)
     montant = db.Column(db.Integer, nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'))
     type_table = db.Column(db.String(10), default='recette')
-
-
-#
-# @app.route("/login", methods=["POST", "GET"])
-# def login():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         user = Users.query.filter_by(identifiant=form.identifiant.data).first()
-#         if user:
-#             if bcrypt.check_password_hash(user.password, form.password.data):
-#                 load_user(user)
-#                 return redirect(url_for('tab_afficher_depense_abattage'))
-#     return render_template('pages/betails/login.html', form=form)
-#
-#
-# @app.route("/", methods=["POST", "GET"])
-# def register():
-#     form = RegisterForm()
-#
-#     if form.validate_on_submit():
-#         hash_password = bcrypt.generate_password_hash(form.password.data)
-#         new_identifiant = Users(identifiant=form.identifiant.data, password=hash_password)
-#         db.session.add(new_identifiant)
-#         db.session.commit()
-#         return redirect(url_for('login'))
-#     return render_template('pages/betails/register.html', form=form)
-#
-#
-# @app.route("/logout", methods=["GET", "POST"])
-# def logout():
-#     logout_user()
-#     return redirect(url_for('login'))
-#
-
+    date = db.Column(db.String(10), nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
 
 @app.route("/")
 def index():
@@ -309,38 +272,6 @@ def update_depense_loyer(depense_id):
         db.session.commit()
         return redirect(url_for('tab_depense_loyer'))
     return render_template('pages/loyer/update_depense_loyer.html', depense=depense)
-
-
-#
-# @app.route("/update_loyer/<int:id>", methods=["GET", "POST"])
-# def update_loyer(id):
-#     depense =Depense.query.filter(and_(Depense.id == id, Depense.type_table=='depense',Depense.service_id=='loyer')).first()
-#     if depense:
-#         if request.method == "POST":
-#             beneficiaire = request.form['beneficiaire']
-#             plan_compta = request.form['plan_compta']
-#             motif = request.form['motif']
-#             montant = request.form['montant']
-#             depense.plan_compta = plan_compta
-#             depense.beneficiaire = beneficiaire
-#             depense.motif = motif
-#             depense.montant = montant
-#             db.session.add(depense)
-#             db.session.commit()
-#             return redirect(url_for('tab_depense_loyer'))
-#         return render_template('pages/loyer/update_depense_loyer.html', depense=depense)
-#     recette = Recette.query.filter(and_(Recette.id == id, Recette.type_table=='recette',Recette.service_id=='loyer')).first()
-#     if recette:
-#         if request.method == "POST":
-#             plan_compta = request.form['plan_compta']
-#             montant = request.form['montant']
-#             recette.plan_compta = plan_compta
-#             recette.montant = montant
-#             db.session.add(recette)
-#             db.session.commit()
-#             return redirect(url_for('tab_recette_loyer'))
-#         return render_template('pages/loyer/update_recette_loyer.html', recette=recette)
-#     return "Traitement non éffectué"
 
 @app.route("/delete/<int:depense_id>", methods=["GET", "POST"])
 def delete_depense(depense_id):
