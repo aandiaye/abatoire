@@ -1,7 +1,8 @@
 from datetime import datetime
-from flask import Flask, render_template, redirect, url_for,request
+from flask import Flask, render_template, redirect, url_for,request,session, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///project.db'
@@ -16,8 +17,13 @@ class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     identifiant = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
-    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
+    #date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
 
+    def set_password(self, secret):
+        self.password = generate_password_hash(secret)
+
+    def check_password(self, secret):
+        return check_password_hash(self.password, secret)
 
 class Service(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -49,43 +55,64 @@ class Recette(db.Model):
     type_table = db.Column(db.String(10), default='recette')
 
 
-#
-# @app.route("/login", methods=["POST", "GET"])
-# def login():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         user = Users.query.filter_by(identifiant=form.identifiant.data).first()
-#         if user:
-#             if bcrypt.check_password_hash(user.password, form.password.data):
-#                 load_user(user)
-#                 return redirect(url_for('tab_afficher_depense_abattage'))
-#     return render_template('pages/betails/login.html', form=form)
-#
-#
-# @app.route("/", methods=["POST", "GET"])
-# def register():
-#     form = RegisterForm()
-#
-#     if form.validate_on_submit():
-#         hash_password = bcrypt.generate_password_hash(form.password.data)
-#         new_identifiant = Users(identifiant=form.identifiant.data, password=hash_password)
-#         db.session.add(new_identifiant)
-#         db.session.commit()
-#         return redirect(url_for('login'))
-#     return render_template('pages/betails/register.html', form=form)
-#
-#
-# @app.route("/logout", methods=["GET", "POST"])
-# def logout():
-#     logout_user()
-#     return redirect(url_for('login'))
-#
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        user_verify = db.session.execute(db.select(Users).where(Users.identifiant == request.form["email"])).first()
+        if user_verify is None:
+            password = generate_password_hash(request.form["password"], method='sha256')
+            user = Users(
+                identifiant = request.form["email"],
+                password = password,)
+            db.session.add(user)
+            db.session.commit()
+            #TODO voir pourquoi les messages flash ne s'affichent pas
+            flash("You are registered and can now login", "success")
+            return redirect(url_for('login'))
+        else:
+            flash("user already existed, please login or contact admin", "danger")
+            return redirect(url_for('login'))
+    else:
+        if 'user_id' in session:
+            return redirect(url_for('home'))
+        else:
+            return render_template('register.html')
 
 
-@app.route("/")
-def index():
-    return render_template('index.html')
+@app.route("/", methods=['POST','GET'])
+def login():
+    if request.method == "POST":
+        user = Users.query.filter_by(identifiant=request.form["email"]).first()
+        if user is not None:
+            if user.check_password(secret=request.form["password"]):
+                #session['user_id'] = user.id
+                session['login'] = user.identifiant
+                #session['lastname'] = user.lastname
+                return redirect(url_for('home'))
+            else:
+                message = "identifiant ou mot de passe incorrect"
+                return render_template('login.html', message=message)
+        else:
+            message = "identifiant ou mot de passe incorrect"
+            return render_template('login.html', message=message)
+    else:
+        if "login" in session:
+            return redirect(url_for('home'))
+        else:
+            message = "Authentification"
+            return render_template('login.html', message=message)
 
+
+
+@app.route('/home')
+def home():
+    if "user_id" in session:
+        #user_id = session['user_id']
+        #lastname = session['lastname']
+        email = session['login']
+        return render_template('pages/index.html', data=[user_id, lastname,email])
+    else:
+        return redirect(url_for('login'))
 
 '''Les pages abattage'''
 @app.route("/add_depense_abattage", methods=["GET", "POST"])
