@@ -1,30 +1,24 @@
 {% extends 'index.html' %}
 {% block content %}
-
-<div class="breadcrumbs  ">
+<div class="breadcrumbs">
     <div class="col-sm-5 mt-3">
         <div class="page-header float-right">
-
             <a href="{{url_for('tab_recette_abattage')}}">
-                <button class="btn btn-primary  rounded" type="button">Recettes</button>
+                <button class="btn btn-primary rounded" type="button">Recettes</button>
             </a>
-
         </div>
     </div>
-
-
     <div class="col-sm-2 mt-3">
         <div class="page-header float-right">
             <a href="{{url_for('tab_depense_abattage')}}">
                 <button class="btn btn-secondary rounded" type="button">Depenses</button>
             </a>
-
         </div>
     </div>
 </div>
-<h3>Vous êtes sur : {{ request.path }}</h3>
+<!--<h3>Vous êtes sur : {{ request.path }}</h3>-->
 <div class="container m-3 d-flex justify-content-between" id="right-panel">
-    <div class="row m-1 p-3 border border-dark col-3">
+    <div class="row m-1 p-3 border border-dark">
         <div class="row m-1">
             {% if total_recette_abattage %}
             <h3 class="d-block">Solde :</h3>
@@ -72,7 +66,7 @@
                     <tr>
                         <td>{{recette.date}}</td>
                         <td>{{recette.plan_compta}}</td>
-                        <td>{{recette.montant}}</td>
+                        <td>{{recette.formatted_montant()}}</td>
                         <td>{{recette.service_id}}</td>
                         <td>
                             <a class="icon-trash" href="{{url_for('delete_recette', recette_id=recette.id) }}"

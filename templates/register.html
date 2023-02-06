@@ -29,17 +29,40 @@
 
 </head>
 
-<body>
+
+<body class="bg-dark">
 
 
-    {% include 'partials/slide_bar.html' %}
-
-    <div id="right-panel" class="right-panel"> <!--L'ensemble des elements placés à droite-->
-        {% include 'partials/nav_bar.html' %}<!--Navbar-->
-
-        {% block content %}
-        <!--Lieu d'insertion des differentes pages entre le sidebar et le navbar-->
-        {% endblock %}
+    <div class="sufee-login d-flex align-content-center flex-wrap">
+        <div class="container">
+            <div class="login-content">
+                <div class="login-logo">
+                    <a href="index.html">
+                        <img class="align-content" src="images/logo.png" alt="">
+                    </a>
+                </div>
+                <div class="login-form">
+                    <form method ="post", action="{{url_for('register')}}">
+                        <div class="form-group">
+                            <label>Adresse e-mail</label>
+                            <input type="email" class="form-control" name="email">
+                        </div>
+                        <div class="form-group">
+                            <label>Mot de passe</label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmer mot de passe</label>
+                            <input type="password" class="form-control" name="password2">
+                        </div>
+                            <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30">Enregistrer</button>
+                        <div class="register-link m-t-15 text-center">
+                            <p>Déjà un compte ? <a href="{{url_for('login')}}"> Connectez-vous</a></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 
 
@@ -72,19 +95,6 @@
                 normalizeFunction: 'polynomial'
             });
         })(jQuery);
-
-
-var buttons = document.querySelectorAll('.nav-link');
-
-for (var i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener('click', function() {
-    for (var j = 0; j < buttons.length; j++) {
-      buttons[j].classList.remove('active');
-    }
-    this.classList.add('active');
-  });
-}
-
     </script>
 
 

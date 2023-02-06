@@ -1,0 +1,113 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="fr">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <title>GESTION ABATTOIRE</title>
+    <meta content="GESTION ABATTOIRE" name="description">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+
+    <link href="apple-icon.png" rel="apple-touch-icon">
+    <link href="favicon.ico" rel="shortcut icon">
+
+    <link href="/static/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/vendors/themify-icons/css/themify-icons.css" rel="stylesheet">
+    <link href="/static/vendors/flag-icon-css/css/flag-icon.min.css" rel="stylesheet">
+    <link href="/static/vendors/selectFX/css/cs-skin-elastic.css" rel="stylesheet">
+    <link href="/static/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet">
+    <link href="/static/assets/css/style.css" rel="stylesheet">
+    <link href="/static/assets/css/style2.css" rel="stylesheet">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+<style>
+            .flashes p.error {
+                color: red;
+            }
+        </style>
+</head>
+
+<body class="bg-dark">
+
+
+<div class="sufee-login d-flex align-content-center flex-wrap">
+    <div class="container">
+        <div class="login-content">
+            <div class="login-logo">
+                <a href="index.html">
+                    <img alt="" class="align-content" src="images/logo.png">
+                </a>
+            </div>
+            <div class="login-form">
+                <form action="{{url_for('login')}}" method="post">
+                    <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Se connecter</h1>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                        <div class=flashes>
+                            {% for category,message in messages %}
+                            <p class="{{category}}">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                    <div class="form-group">
+                        <label>Adresse e-mail</label>
+                        <input class="form-control" name="email" type="email">
+                    </div>
+                    <div class="form-group">
+                        <label>Mot de passe</label>
+                        <input class="form-control" name="password" type="password">
+                    </div>
+
+                    <input class="btn btn-success btn-flat m-b-30 m-t-30" type="submit">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="/static/vendors/popper.js/dist/umd/popper.min.js"></script>
+    <script src="/static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/static/assets/js/main.js"></script>
+    <script src="/static/vendors/chart.js/dist/Chart.bundle.min.js"></script>
+    <script src="/static/assets/js/dashboard.js"></script>
+    <script src="/static/assets/js/widgets.js"></script>
+    <script src="/static/vendors/jqvmap/dist/jquery.vmap.min.js"></script>
+    <script src="/static/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <script src="/static/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+
+
+    <script>
+        (function($) {
+            "use strict";
+
+            jQuery('#vmap').vectorMap({
+                map: 'world_en',
+                backgroundColor: null,
+                color: '#ffffff',
+                hoverOpacity: 0.7,
+                selectedColor: '#1de9b6',
+                enableZoom: true,
+                showTooltip: true,
+                values: sample_data,
+                scaleColors: ['#1de9b6', '#03a9f5'],
+                normalizeFunction: 'polynomial'
+            });
+        })(jQuery);
+    </script>
+
+
+
+</body>
+
+</html>
