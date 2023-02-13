@@ -1,3 +1,4 @@
+import os
 from datetime import datetime
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -5,11 +6,12 @@ from sqlalchemy import func
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///project.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///' + os.path.join(basedir, 'project.db')
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///project.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'mysecretkey'
-db.init_app(app)
 
 
 class Users(db.Model):
@@ -252,6 +254,24 @@ def update_depense_betail(depense_id):
         db.session.commit()
         return redirect(url_for('tab_depense_betail'))
     return render_template('pages/betail/update_depense_betail.html', depense=depense)
+@app.route("/delete/<int:depense_id>", methods=["GET", "POST"])
+def delete_depense_betail(depense_id):
+    if request.method == "GET":
+        depense = Depense.query.filter_by(id=depense_id).first()
+        db.session.delete(depense)
+        db.session.commit()
+        return redirect('/tab_depense_loyer')
+    return render_template("pages/loyer/tab_depense_loyer.html")
+
+
+@app.route("/delete_recette/<int:recette_id>", methods=["GET", "POST"])
+def delete_recette_betail(recette_id):
+    if request.method == "GET":
+        recette = Recette.query.filter_by(id=recette_id).first()
+        db.session.delete(recette)
+        db.session.commit()
+        return redirect('/tab_recette_loyer')
+    return render_template("pages/loyer/tab_recette_loyer.html")
 
 
 '''Les pages loyer'''
@@ -334,7 +354,7 @@ def update_depense_loyer(depense_id):
     return render_template('pages/loyer/update_depense_loyer.html', depense=depense)
 
 
-@app.route("/delete/<int:depense_id>", methods=["GET", "POST"])
+@app.route("/delete_depense/<int:depense_id>", methods=["GET", "POST"])
 def delete_depense(depense_id):
     if request.method == "GET":
         depense = Depense.query.filter_by(id=depense_id).first()
