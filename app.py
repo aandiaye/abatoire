@@ -373,6 +373,34 @@ def delete_recette(recette_id):
         return redirect('/tab_recette_loyer')
     return render_template("pages/loyer/tab_recette_loyer.html")
 
+#Page generale
+@app.route("/generale")
+def generale():
+    tdA = db.session.query(func.sum(Depense.montant)).filter(Depense.service_id == 'abattage').scalar()
+    trA = db.session.query(func.sum(Recette.montant)).filter(Recette.service_id == 'abattage').scalar()
+    solde_abattage = 0
+    if trA is not None and tdA is not None:
+        solde_abattage = trA - tdA
+
+    tdB = db.session.query(func.sum(Depense.montant)).filter(Depense.service_id == 'betail').scalar()
+    trB = db.session.query(func.sum(Recette.montant)).filter(Recette.service_id == 'betail').scalar()
+    solde_betail = 0
+    if trB is not None and tdB is not None:
+        solde_betail = trB - tdB
+    else:
+        tdB=0
+        trB=0
+
+    tdL = db.session.query(func.sum(Depense.montant)).filter(Depense.service_id == 'loyer').scalar()
+    trL = db.session.query(func.sum(Recette.montant)).filter(Recette.service_id == 'loyer').scalar()
+    solde_loyer = 0
+    if trL is not None and tdL is not None:
+        solde_loyer = trL - tdL
+
+    montant_global=0
+    if solde_loyer is not None and solde_betail is not None and solde_abattage is not None:
+        montant_global=solde_abattage+solde_loyer+solde_betail
+    return render_template("pages/generale.html", abattages=[tdA, trA, solde_abattage], betails=[tdB, trB, solde_betail], loyers=[tdL, trL, solde_loyer],montant_global=montant_global)
 
 if __name__ == '__main__':
     with app.app_context():

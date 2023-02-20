@@ -127,6 +127,10 @@ position:relative!important;
 top:-9px!important;
 }
 
-.nav-link.active {
-  background-color: green;
+.link.active {
+  background-color: red;
+}
+
+li a:is(:linked, :active, :visited).active {
+  background-color: yellow;
 }

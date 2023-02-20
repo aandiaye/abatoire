@@ -48,10 +48,56 @@
 
             <a aria-controls="v-pills-settings" aria-selected="false" class="nav-link bg-nav-link" data-target="#id"
                data-toggle=""
-               href=""
+               href="{{url_for('generale')}}"
                id="" role="tab">
                 <i class="fa fa-tags"></i>
                 &nbsp Générale</a>
+            <nav>
+                <ul>
+                    <li class="nav-item">
+                        <a aria-current="page" class="active" href="/generale">
+                            <svg class="bi pe-none me-2" height="16" width="16">
+                                <use xlink:href="#home"/>
+                            </svg>
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-white" href="/generale">
+                            <svg class="bi pe-none me-2" height="16" width="16">
+                                <use xlink:href="#speedometer2"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-white" href="/generale">
+                            <svg class="bi pe-none me-2" height="16" width="16">
+                                <use xlink:href="#table"/>
+                            </svg>
+                            Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-white" href="/generale">
+                            <svg class="bi pe-none me-2" height="16" width="16">
+                                <use xlink:href="#grid"/>
+                            </svg>
+                            Products
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-white" href="/generale">
+                            <svg class="bi pe-none me-2" height="16" width="16">
+                                <use xlink:href="#people-circle"/>
+                            </svg>
+                            Customers
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+
 
         </div>
     </nav>
