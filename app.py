@@ -60,6 +60,19 @@ class Recette(db.Model):
     def formatted_montant(self):
         return "{:,}".format(self.montant)
 
+@app.route("/etat_recette")
+def etat_recette():
+    return render_template('pages/etat_recette.html')
+
+@app.route("/etat_depense")
+def etat_depense():
+    return render_template('pages/etat_depense.html')
+
+@app.route("/bon_de_caisse")
+def bon_de_caisse():
+    return render_template('pages/bon_de_caisse.html')
+
+
 
 @app.route('/')
 def index():

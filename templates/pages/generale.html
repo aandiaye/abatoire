@@ -1,6 +1,7 @@
 {% extends 'index.html' %}
 {% block content %}
-<div class="row  p-1">
+<div class="generale">
+    <div class="row  p-1">
   <div class="col-md-4">
     <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
       <div class="card-header"><h2>Abattage</h2></div>
@@ -48,7 +49,7 @@
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row p-1">
   <div class="col-md-4">
     <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
       <div class="card-header"><h2>Loyer</h2></div>
@@ -61,5 +62,19 @@
       </div>
     </div>
   </div>
+</div>
+   <div class="periode">
+       <div class="periode3"><h3 class="mb-3" style="color:white">Afficher l'etat de : </h3>
+      <select class="select_period">
+          <option>Depense</option>
+          <option> Recette</option>
+      </select></div>
+      <div class="periode2">
+          <div class="pronom"> De  <input type="date" class="design_periode"/> </div>
+           <div class="periode1"> à  <input type="date" class="design_periode"/></div>
+           <a href="{{ url_for('etat_recette') }}"><div><input type="submit" value="recherche" class="recherche_periode"/></div></a>
+
+      </div>
+   </div>
 </div>
 {% endblock %}
