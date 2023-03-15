@@ -41,7 +41,7 @@
      {% if loyers %}
         <h5 class="card-title">Total depense: {{loyers[0]}} FCFA</h5>
         <h5 class="card-title">Total recette: {{loyers[1]}} FCFA</h5>
-        <h3 class="text-success">Solde: {{loyers[2]}} FCFA</h3>`
+        <h3 class="text-success">Solde: {{loyers[2]}} FCFA</h3>
           {% else %}
           <h4>Aucun enregistrement Trouvé</h4>
         {% endif %}
@@ -49,10 +49,11 @@
     </div>
   </div>
 </div>
+
 <div class="row p-1">
   <div class="col-md-4">
     <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
-      <div class="card-header"><h2>Loyer</h2></div>
+      <div class="card-header"><h2>Montant global</h2></div>
       <div class="card-body">
           {% if montant_global %}
      <h3 class="text-success">Solde: {{montant_global}} FCFA</h3>

@@ -29,30 +29,34 @@
 <div class="recu1">
     <div class="recu">
             <div class="bon">
-                <div class="m-3"><img src="static/images/logoAFAM.jpg" width="50px"/></div>
+                <div class="m-3"><img src="/static/images/logoAFAM.jpg" width="50px"/></div>
                 <h3 class="text_recu">BON DE CAISSE</h3>
                 <div class="date_bon" style="">
-                <div class="title_bon">DATE : </div> <div class="ml-2"> 22/22/2023</div>
+                <div class="title_bon">DATE : </div> <div class="ml-2"> {{bon_caisse.date}}</div>
             </div>
             </div>
 
         <div>
             <div class="bon ml-3">
-                <div class="title_bon">NUMÉRO DU REÇU : </div> <div class="ml-2"> 305728</div>
+                <div class="title_bon">NUMÉRO DU REÇU : </div> <div class="ml-2"> {{bon_caisse.id}}</div>
             </div>
+            {%if bon_caisse.type_table=='depense'%}
             <div class="text_dep">DEPENSE</div>
+             {% else %}
+            <div class="text_dep">RECETTE</div>
+            {% endif %}
             <div class="container_bon">
                      <div class="bon ml-3">
-                         <div class="title_bon">BÉNÉFICIAIRE : </div> <div class="ml-2"> KAOUKOU JEAN</div>
+                         <div class="title_bon">BÉNÉFICIAIRE : </div> <div class="ml-2">{{bon_caisse.beneficiaire}}</div>
                 </div>
                  <div class="bon ml-3">
-                    <div class="title_bon">MONTANT EN CHIFFRE : </div> <div class="ml-2"> 120.000 FCFA</div>
+                    <div class="title_bon">MONTANT EN CHIFFRE : </div> <div class="ml-2"> {{bon_caisse.montant}}</div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MONTANT EN LETTRE : </div> <div class="ml-2">CENT VINGT MILLE FRANC </div>
+                    <div class="title_bon">MONTANT EN LETTRE : </div> <div class="ml-2">{{montant_lettre}} </div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MOTIF: </div> <div class="ml-2">ACHAT</div>
+                    <div class="title_bon">MOTIF: </div> <div class="ml-2">{{bon_caisse.motif}}</div>
                 </div>
 
                  <div class="signature ml-3">

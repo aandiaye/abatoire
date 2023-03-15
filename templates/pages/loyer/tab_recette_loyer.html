@@ -61,7 +61,7 @@
                     <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Plan Comptable</th>
+                        <th>Beneficiaire</th>
                         <th>Montant en Chiffre</th>
                         <th>Service</th>
                         <th>Action</th>
@@ -71,7 +71,7 @@
                     {% for recette in recettes %}
                     <tr>
                         <td>{{recette.date}}</td>
-                        <td>{{recette.plan_compta}}</td>
+                        <td>{{recette.beneficiaire}}</td>
                         <td>{{recette.montant}}</td>
                         <td>{{recette.service_id}}</td>
                         <td>
@@ -80,6 +80,7 @@
                             <a class="icon-editer"
                                href="{{url_for('update_recette_loyer',recette_id=recette.id) }}"> <i
                                     class="fa fa-edit"></i></a>
+                            <a class="icon-download" href="{{ url_for('bon_recette', bon_recette_id=recette.id) }}" onclick="return confirm('Voulez vous telecharger le reçu ?')"><i class="fa fa-download"></i></a>
                         </td>
                     </tr>
 

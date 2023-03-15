@@ -60,7 +60,7 @@
                     <thead>
                     <tr>
                         <th>Date</th>
-                        <th>Plan Comptable</th>
+<!--                        <th>Plan Comptable</th>-->
                         <th>Bénéficiaire</th>
                         <th>Montant en Chiffre</th>
                         <th>Service</th>
@@ -71,7 +71,7 @@
                     {% for depense in depenses %}
                     <tr>
                         <td>{{depense.date}}</td>
-                        <td>{{depense.plan_compta}}</td>
+<!--                        <td>{{depense.plan_compta}}</td>-->
                         <td>{{depense.beneficiaire}}</td>
                         <td>{{depense.montant}}</td>
                         <td>{{depense.service_id}}</td>
@@ -80,6 +80,8 @@
                                onclick="return confirm('Êtes vous de vouloir supprimer  ?')"><i class="fa fa-trash"></i></a>
                             <a class="icon-editer" href="{{url_for('update_depense_loyer',depense_id=depense.id)}}"> <i
                                     class="fa fa-edit"></i></a>
+
+                            <a class="icon-download" href="{{ url_for('bon_depense', bon_depense_id=depense.id) }}" onclick="return confirm('Voulez vous telecharger le reçu ?')"><i class="fa fa-download"></i></a>
                         </td>
                     </tr>
 

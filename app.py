@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+from num2words import num2words
 from flask import Flask, render_template, redirect, url_for, request, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import func
@@ -37,7 +38,7 @@ class Service(db.Model):
 
 class Depense(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    plan_compta = db.Column(db.Integer, nullable=False)
+    #plan_compta = db.Column(db.Integer, nullable=False)
     beneficiaire = db.Column(db.Integer, nullable=False)
     montant = db.Column(db.Float, nullable=False)
     motif = db.Column(db.String(255), nullable=False)
@@ -51,28 +52,16 @@ class Depense(db.Model):
 
 class Recette(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    plan_compta = db.Column(db.Integer, nullable=False)
+    #plan_compta = db.Column(db.Integer, nullable=False)
+    beneficiaire = db.Column(db.Integer, nullable=False)
     montant = db.Column(db.Float, nullable=False)
+    motif = db.Column(db.String(255), nullable=False)
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'))
     type_table = db.Column(db.String(10), default='recette')
     date = db.Column(db.String(10), nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
 
     def formatted_montant(self):
         return "{:,}".format(self.montant)
-
-@app.route("/etat_recette")
-def etat_recette():
-    return render_template('pages/etat_recette.html')
-
-@app.route("/etat_depense")
-def etat_depense():
-    return render_template('pages/etat_depense.html')
-
-@app.route("/bon_de_caisse")
-def bon_de_caisse():
-    return render_template('pages/bon_de_caisse.html')
-
-
 
 @app.route('/')
 def index():
@@ -114,7 +103,7 @@ def logout():
 def add_depense_abattage():
     if request.method == "POST":
         depense = Depense(
-            plan_compta=request.form['plan_compta'],
+            # plan_compta=request.form['plan_compta'],
             beneficiaire=request.form['beneficiaire'],
             montant=request.form['montant'],
             motif=request.form['motif'],
@@ -128,8 +117,10 @@ def add_depense_abattage():
 def add_recette_abattage():
     if request.method == "POST":
         recette = Recette(
-            plan_compta=request.form['plan_compta'],
+            # plan_compta=request.form['plan_compta'],
+            beneficiaire=request.form['beneficiaire'],
             montant=request.form['montant'],
+            motif=request.form['motif'],
             service_id=request.form['service'],
         )
         db.session.add(recette)
@@ -161,10 +152,12 @@ def tab_recette_abattage():
 def update_recette_abattage(recette_id):
     recette = Recette.query.filter_by(id=recette_id).first()
     if request.method == "POST":
-        plan_compta = request.form['plan_compta']
+        beneficiaire = request.form['beneficiaire']
         montant = request.form['montant']
-        recette.plan_compta = plan_compta
+        motif = request.form['motif']
+        recette.beneficiaire = beneficiaire
         recette.montant = montant
+        recette.motif = motif
         db.session.add(recette)
         db.session.commit()
         return redirect(url_for('tab_recette_abattage'))
@@ -176,10 +169,10 @@ def update_depense_abattage(depense_id):
     depense = Depense.query.filter_by(id=depense_id).first()
     if request.method == "POST":
         beneficiaire = request.form['beneficiaire']
-        plan_compta = request.form['plan_compta']
+        # plan_compta = request.form['plan_compta']
         motif = request.form['motif']
         montant = request.form['montant']
-        depense.plan_compta = plan_compta
+        # depense.plan_compta = plan_compta
         depense.beneficiaire = beneficiaire
         depense.motif = motif
         depense.montant = montant
@@ -196,7 +189,7 @@ def update_depense_abattage(depense_id):
 def add_depense_betail():
     if request.method == "POST":
         depense = Depense(
-            plan_compta=request.form['plan_compta'],
+            # plan_compta=request.form['plan_compta'],
             beneficiaire=request.form['beneficiaire'],
             montant=request.form['montant'],
             motif=request.form['motif'],
@@ -210,8 +203,10 @@ def add_depense_betail():
 def add_recette_betail():
     if request.method == "POST":
         recette = Recette(
-            plan_compta=request.form['plan_compta'],
+            # plan_compta=request.form['plan_compta'],
+            beneficiaire=request.form['beneficiaire'],
             montant=request.form['montant'],
+            motif=request.form['motif'],
             service_id=request.form['service'],
         )
         db.session.add(recette)
@@ -241,10 +236,14 @@ def tab_recette_betail():
 def update_recette_betail(recette_id):
     recette = Recette.query.filter_by(id=recette_id).first()
     if request.method == "POST":
-        plan_compta = request.form['plan_compta']
+        # plan_compta = request.form['plan_compta']
+        beneficiaire = request.form['beneficiaire']
         montant = request.form['montant']
-        recette.plan_compta = plan_compta
+        motif = request.form['motif']
+        # recette.plan_compta = plan_compta
+        recette.beneficiaire = beneficiaire
         recette.montant = montant
+        recette.motif = motif
         db.session.add(recette)
         db.session.commit()
         return redirect(url_for('tab_recette_betail'))
@@ -256,10 +255,10 @@ def update_depense_betail(depense_id):
     depense = Depense.query.filter_by(id=depense_id).first()
     if request.method == "POST":
         beneficiaire = request.form['beneficiaire']
-        plan_compta = request.form['plan_compta']
+        # plan_compta = request.form['plan_compta']
         motif = request.form['motif']
         montant = request.form['montant']
-        depense.plan_compta = plan_compta
+        # depense.plan_compta = plan_compta
         depense.beneficiaire = beneficiaire
         depense.motif = motif
         depense.montant = montant
@@ -294,7 +293,7 @@ def delete_recette_betail(recette_id):
 def add_depense_loyer():
     if request.method == "POST":
         depense = Depense(
-            plan_compta=request.form['plan_compta'],
+            # plan_compta=request.form['plan_compta'],
             beneficiaire=request.form['beneficiaire'],
             montant=request.form['montant'],
             motif=request.form['motif'],
@@ -308,8 +307,10 @@ def add_depense_loyer():
 def add_recette_loyer():
     if request.method == "POST":
         recette = Recette(
-            plan_compta=request.form['plan_compta'],
+            # plan_compta=request.form['plan_compta'],
+            beneficiaire=request.form['beneficiaire'],
             montant=request.form['montant'],
+            motif=request.form['motif'],
             service_id=request.form['service'],
         )
         db.session.add(recette)
@@ -339,10 +340,14 @@ def tab_recette_loyer():
 def update_recette_loyer(recette_id):
     recette = Recette.query.filter_by(id=recette_id).first()
     if request.method == "POST":
-        plan_compta = request.form['plan_compta']
+        # plan_compta = request.form['plan_compta']
+        beneficiaire = request.form['beneficiaire']
         montant = request.form['montant']
-        recette.plan_compta = plan_compta
+        motif = request.form['motif']
+        # recette.plan_compta = plan_compta
+        recette.beneficiaire = beneficiaire
         recette.montant = montant
+        recette.motif = motif
         db.session.add(recette)
         db.session.commit()
         return redirect(url_for('tab_recette_loyer'))
@@ -354,10 +359,10 @@ def update_depense_loyer(depense_id):
     depense = Depense.query.filter_by(id=depense_id).first()
     if request.method == "POST":
         beneficiaire = request.form['beneficiaire']
-        plan_compta = request.form['plan_compta']
+        # plan_compta = request.form['plan_compta']
         motif = request.form['motif']
         montant = request.form['montant']
-        depense.plan_compta = plan_compta
+        # depense.plan_compta = plan_compta
         depense.beneficiaire = beneficiaire
         depense.motif = motif
         depense.montant = montant
@@ -394,6 +399,9 @@ def generale():
     solde_abattage = 0
     if trA is not None and tdA is not None:
         solde_abattage = trA - tdA
+    else:
+        trA=0
+        tdA=0
 
     tdB = db.session.query(func.sum(Depense.montant)).filter(Depense.service_id == 'betail').scalar()
     trB = db.session.query(func.sum(Recette.montant)).filter(Recette.service_id == 'betail').scalar()
@@ -409,11 +417,37 @@ def generale():
     solde_loyer = 0
     if trL is not None and tdL is not None:
         solde_loyer = trL - tdL
+    else:
+        trL=0
+        tdL=0
 
     montant_global=0
     if solde_loyer is not None and solde_betail is not None and solde_abattage is not None:
         montant_global=solde_abattage+solde_loyer+solde_betail
     return render_template("pages/generale.html", abattages=[tdA, trA, solde_abattage], betails=[tdB, trB, solde_betail], loyers=[tdL, trL, solde_loyer],montant_global=montant_global)
+
+#Les etats
+@app.route("/etat_recette")
+def etat_recette():
+    return render_template('pages/etat_recette.html')
+
+@app.route("/etat_depense")
+def etat_depense():
+    return render_template('pages/etat_depense.html')
+
+@app.route("/bon_depense/<int:bon_depense_id>")
+def bon_depense(bon_depense_id):
+    bon_caisse = Depense.query.filter_by(id=bon_depense_id).first()
+    montant_lettre=num2words(bon_caisse.montant, lang='fr')
+    return render_template('pages/bon_de_caisse.html',bon_caisse=bon_caisse, montant_lettre=montant_lettre)
+
+@app.route("/bon_drecette/<int:bon_recette_id>")
+def bon_recette(bon_recette_id):
+    bon_caisse = Recette.query.filter_by(id=bon_recette_id).first()
+    montant_lettre=num2words(bon_caisse.montant, lang='fr')
+    return render_template('pages/bon_de_caisse.html',bon_caisse=bon_caisse, montant_lettre=montant_lettre)
+
+
 
 if __name__ == '__main__':
     with app.app_context():
