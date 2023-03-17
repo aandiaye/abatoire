@@ -2,80 +2,84 @@
 {% block content %}
 <div class="generale">
     <div class="row  p-1">
-  <div class="col-md-4">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
-      <div class="card-header"><h2>Abattage</h2></div>
-      <div class="card-body">
-        {% if abattages %}
-        <h5 class="card-title">Total depense: {{abattages[0]}} FCFA</h5>
-        <h5 class="card-title">Total recette: {{abattages[1]}} FCFA</h5>
-        <h3 class="text-success">Solde: {{abattages[2]}} FCFA</h3>
-          {% elif abattages[0] is None or abattages[1] is None %}
-           <h4>Aucun enregistrement Trouvé</h4>
-          {% else %}
-          <h4>Aucun enregistrement Trouvé</h4>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
+                <div class="card-header"><h2>Abattage</h2></div>
+                <div class="card-body">
+                    {% if abattages %}
+                    <h5 class="card-title">Total depense: {{abattages[0]}} FCFA</h5>
+                    <h5 class="card-title">Total recette: {{abattages[1]}} FCFA</h5>
+                    <h3 class="text-success">Solde: {{abattages[2]}} FCFA</h3>
+                    {% elif abattages[0] is None or abattages[1] is None %}
+                    <h4>Aucun enregistrement Trouvé</h4>
+                    {% else %}
+                    <h4>Aucun enregistrement Trouvé</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 
-  <div class="col-md-4">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
-      <div class="card-header"><h2>Bétail</h2></div>
-      <div class="card-body">
-       {% if betails %}
-        <h5 class="card-title">Total depense: {{betails[0]}} FCFA</h5>
-        <h5 class="card-title">Total recette: {{betails[1]}} FCFA</h5>
-        <h3 class="text-success">Solde: {{betails[2]}} FCFA</h3>
-            {% else %}
-          <h4>Aucun enregistrement Trouvé</h4>
-        {% endif %}
-      </div>
-    </div>
-  </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
+                <div class="card-header"><h2>Bétail</h2></div>
+                <div class="card-body">
+                    {% if betails %}
+                    <h5 class="card-title">Total depense: {{betails[0]}} FCFA</h5>
+                    <h5 class="card-title">Total recette: {{betails[1]}} FCFA</h5>
+                    <h3 class="text-success">Solde: {{betails[2]}} FCFA</h3>
+                    {% else %}
+                    <h4>Aucun enregistrement Trouvé</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
 
-  <div class="col-md-4">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
-      <div class="card-header"><h2>Loyer</h2></div>
-      <div class="card-body">
-     {% if loyers %}
-        <h5 class="card-title">Total depense: {{loyers[0]}} FCFA</h5>
-        <h5 class="card-title">Total recette: {{loyers[1]}} FCFA</h5>
-        <h3 class="text-success">Solde: {{loyers[2]}} FCFA</h3>
-          {% else %}
-          <h4>Aucun enregistrement Trouvé</h4>
-        {% endif %}
-      </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
+                <div class="card-header"><h2>Loyer</h2></div>
+                <div class="card-body">
+                    {% if loyers %}
+                    <h5 class="card-title">Total depense: {{loyers[0]}} FCFA</h5>
+                    <h5 class="card-title">Total recette: {{loyers[1]}} FCFA</h5>
+                    <h3 class="text-success">Solde: {{loyers[2]}} FCFA</h3>
+                    {% else %}
+                    <h4>Aucun enregistrement Trouvé</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<div class="row p-1">
-  <div class="col-md-4">
-    <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
-      <div class="card-header"><h2>Montant global</h2></div>
-      <div class="card-body">
-          {% if montant_global %}
-     <h3 class="text-success">Solde: {{montant_global}} FCFA</h3>
-          {% else %}
-          <h3 class="text-success">Pas de montant global</h3>
-          {% endif %}
-      </div>
+    <div class="row p-1">
+        <div class="col-md-4">
+            <div class="card text-white bg-secondary mb-3" style="max-width: 30rem;">
+                <div class="card-header"><h2>Montant global</h2></div>
+                <div class="card-body">
+                    {% if montant_global %}
+                    <h3 class="text-success">Solde: {{montant_global}} FCFA</h3>
+                    {% else %}
+                    <h3 class="text-success">Pas de montant global</h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
-   <div class="periode">
-       <div class="periode3"><h3 class="mb-3" style="color:white">Afficher l'etat de : </h3>
-      <select class="select_period">
-          <option>Depense</option>
-          <option> Recette</option>
-      </select></div>
-      <div class="periode2">
-          <div class="pronom"> De  <input type="date" class="design_periode"/> </div>
-           <div class="periode1"> à  <input type="date" class="design_periode"/></div>
-           <a href="{{ url_for('etat_recette') }}"><div><input type="submit" value="recherche" class="recherche_periode"/></div></a>
-
-      </div>
-   </div>
+    <div class="periode">
+        <form action="{{ url_for('etat') }}" method="POST">
+            <div class="periode3">
+                <h3 class="mb-3" style="color:white">Afficher l'etat de : </h3>
+                <select class="select_period" name="choix">
+                    <option value="depense">Dépense</option>
+                    <option value="recette">Recette</option>
+                </select>
+            </div>
+            <div class="periode2">
+                <div class="pronom"> De <input required class="design_periode" name="debut" type="date"/></div>
+                <div class="periode1"> à <input required class="design_periode" name="fin" type="date"/></div>
+                <input name="action" type="hidden" value="recherche">
+                <div><input class="recherche_periode" type="submit" value="recherche"/></div>
+            </div>
+        </form>
+    </div>
 </div>
 {% endblock %}
