@@ -65,7 +65,7 @@
         </div>
     </div>
     <div class="periode">
-        <form action="{{ url_for('etat') }}" method="POST">
+        <form action="{{ url_for('etat') }}" method="POST" target="_blank">
             <div class="periode3">
                 <h3 class="mb-3" style="color:white">Afficher l'etat de : </h3>
                 <select class="select_period" name="choix">
@@ -74,10 +74,10 @@
                 </select>
             </div>
             <div class="periode2">
-                <div class="pronom"> De <input required class="design_periode" name="debut" type="date"/></div>
-                <div class="periode1"> à <input required class="design_periode" name="fin" type="date"/></div>
+                <div class="pronom"> De <input required class="design_periode" id="debut" name="debut" type="date"/></div>
+                <div class="periode1"> à <input required class="design_periode" id="fin" name="fin" type="date"  /></div>
                 <input name="action" type="hidden" value="recherche">
-                <div><input class="recherche_periode" type="submit" value="recherche"/></div>
+                <div><input class="recherche_periode" type="submit" value="recherche" /></div>
             </div>
         </form>
     </div>

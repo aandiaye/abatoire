@@ -427,15 +427,11 @@ def generale():
     return render_template("pages/generale.html", abattages=[tdA, trA, solde_abattage], betails=[tdB, trB, solde_betail], loyers=[tdL, trL, solde_loyer],montant_global=montant_global)
 
 #Les etats
-@app.route("/etat_recette",methods=["POST","GET"])
+@app.route("/etat",methods=["POST","GET"])
 def etat():
     if request.method == 'POST':
         debut = request.form['debut']
-        # debut = datetime.strptime(debut, "%d-%m-%Y")
-        # debut = debut.strftime('%Y-%m-%d')
         fin = request.form['fin']
-        # fin = datetime.strptime(fin, "%d-%m-%Y")
-        # fin = fin.strftime('%Y-%m-%d')
         choix = request.form['choix']
         if choix == 'depense':
             depenses = Depense.query.filter(Depense.date >= debut, Depense.date <= fin).all()
@@ -444,10 +440,6 @@ def etat():
             recettes = Recette.query.filter(Recette.date >= debut, Recette.date <= fin).all()
             return render_template('pages/etat_recette.html', recettes=recettes, debut=debut, fin=fin)
     return render_template('pages/general.html')
-
-@app.route("/etat_depense")
-def etat_depense():
-    return render_template('pages/etat_depense.html')
 
 @app.route("/bon_depense/<int:bon_depense_id>")
 def bon_depense(bon_depense_id):
@@ -466,4 +458,4 @@ def bon_recette(bon_recette_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(port=5000, debug=True)
+    app.run(port=3000, debug=True)

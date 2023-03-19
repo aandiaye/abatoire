@@ -141,19 +141,12 @@ color:green;
 margin-left:30px}
 
 .etat{
-background-color: white;
-width:800px;
-height:800px;
-margin-top:50px;
-margin-bottom:80px;
+width:80%;
+margin:1rem;
 }
 
 .recu{
-background-color: white;
-width:600px;
-height:400px;
-margin-top:50px;
-margin-bottom:80px;
+margin:0 0 3rem 0;
 }
 
 .etat1{
@@ -195,20 +188,17 @@ table {
 .imprimer{
 display:flex;
 justify-content: end;
-margin-bottom:50px;
-margin-right:30px;
-margin-left:30px;
-margin-top:30px
+margin:0.5rem
 }
 
 #imprimer{
 
 width:20%;
-background-color:#D6FF1F;
+background-color:yellow;
 color:#353535;
-font-weight:500;
+font-weight:1rem;
 border-radius:5px;
-font-size:25px}
+font-size:1rem}
 
 .bon{
 display:flex;
@@ -279,3 +269,7 @@ margin-left:20px}
 
 .pronom{
 color:white}
+
+.nav-link:active {
+  background-color: green;
+}

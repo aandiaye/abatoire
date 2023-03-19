@@ -1,97 +1,136 @@
-{% extends 'index.html' %}
-{% block  content %}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <link rel="stylesheet" href="/static/assets/css/style2.css">
 
-<!-- CSS only -->
+    <style>
+    .text-print{
+    font-size:1.2rem;
+    }
+      /* Définir les dimensions de la page */
+      @page {
+        size: A5;
+        margin: 0;
+      }
 
-
- <!--under nav-->
-<div class="breadcrumbs  ">
-    <div class="col-sm-5 mt-3">
-        <div class="page-header float-right">
-
-            <a href="{{url_for('etat_recette')}}"><button class="btn btn-secondary rounded" type="button">Recettes</button></a>
-
-        </div>
-    </div>
-
-
-    <div class="col-sm-2 mt-3">
-        <div class="page-header float-right">
-            <a href="{{url_for('etat_depense')}}"><button class="btn btn-primary rounded" type="button">Depenses</button></a>
-
-        </div>
-    </div>
+      /* Appliquer les dimensions à la zone d'impression */
+      @media print {
+      .no-print{
+    display:none;
+    }
+        html, body {
+          width: 148mm;
+          height: 210mm;
+        }
+      }
+    </style>
+    <title>Bon de caisse</title>
+</head>
+<body>
+<div class="imprimer no-print">
+    <button class="btn btn-lg " id="imprimer" onclick="window.print()" type="button">Imprimer</button>
 </div>
 
-
-
-<!--under nav-->
 <div class="recu1">
     <div class="recu">
-            <div class="bon">
-                <div class="m-3"><img src="/static/images/logoAFAM.jpg" width="50px"/></div>
-                <h3 class="text_recu">BON DE CAISSE</h3>
-                <div class="date_bon" style="">
-                <div class="title_bon">DATE : </div> <div class="ml-2"> {{bon_caisse.date}}</div>
+        <div class="bon">
+            <div class="m-3"><img src="/static/images/logoAFAM.jpg" width="50px"/></div>
+            <h3 class="text_recu">BON DE CAISSE</h3>
+            <div class="date_bon" style="">
+                <div class="title_bon">DATE :</div>
+                <div class="ml-2"> {{bon_caisse.date}}</div>
             </div>
-            </div>
+        </div>
 
         <div>
             <div class="bon ml-3">
-                <div class="title_bon">NUMÉRO DU REÇU : </div> <div class="ml-2"> {{bon_caisse.id}}</div>
+                <div class="title_bon">NUMÉRO DU REÇU :</div>
+                <div class="ml-2 text-print"> {{bon_caisse.id}}</div>
             </div>
             {%if bon_caisse.type_table=='depense'%}
             <div class="text_dep">DEPENSE</div>
-             {% else %}
+            {% else %}
             <div class="text_dep">RECETTE</div>
             {% endif %}
             <div class="container_bon">
-                     <div class="bon ml-3">
-                         <div class="title_bon">BÉNÉFICIAIRE : </div> <div class="ml-2">{{bon_caisse.beneficiaire}}</div>
-                </div>
-                 <div class="bon ml-3">
-                    <div class="title_bon">MONTANT EN CHIFFRE : </div> <div class="ml-2"> {{bon_caisse.montant}}</div>
+                <div class="bon ml-3">
+                    <div class="title_bon">BÉNÉFICIAIRE :</div>
+                    <div class="ml-2 text-print">{{bon_caisse.beneficiaire}}</div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MONTANT EN LETTRE : </div> <div class="ml-2">{{montant_lettre}} </div>
+                    <div class="title_bon">MONTANT EN CHIFFRE :</div>
+                    <div class="ml-2 text-print"> {{bon_caisse.montant}}</div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MOTIF: </div> <div class="ml-2">{{bon_caisse.motif}}</div>
+                    <div class="title_bon">MONTANT EN LETTRE :</div>
+                    <div class="ml-2 text-print">{{montant_lettre}}</div>
+                </div>
+                <div class="bon ml-3">
+                    <div class="title_bon">MOTIF:</div>
+                    <div class="ml-2">{{bon_caisse.motif}}</div>
                 </div>
 
-                 <div class="signature ml-3">
-                    <div>SIGNATURE DU BÉNÉFICIARE </div> <div class="ml-2">SIGNATURE DU COMPTABLE</div>
+                <div class="signature ml-3">
+                    <div>SIGNATURE DU BÉNÉFICIARE</div>
+                    <div class="ml-2">SIGNATURE DU COMPTABLE</div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
 
-<div class="imprimer">
-  <button class="btn btn-lg" id="imprimer" type="button">Imprimer</button>
+<hr style="border-style:dashed;">
+
+<div class="recu1">
+    <div class="recu">
+        <div class="bon">
+            <div class="m-3"><img src="/static/images/logoAFAM.jpg" width="50px"/></div>
+            <h3 class="text_recu">BON DE CAISSE</h3>
+            <div class="date_bon" style="">
+                <div class="title_bon">DATE :</div>
+                <div class="ml-2"> {{bon_caisse.date}}</div>
+            </div>
+        </div>
+
+        <div>
+            <div class="bon ml-3">
+                <div class="title_bon">NUMÉRO DU REÇU :</div>
+                <div class="ml-2 text-print"> {{bon_caisse.id}}</div>
+            </div>
+            {%if bon_caisse.type_table=='depense'%}
+            <div class="text_dep">DEPENSE</div>
+            {% else %}
+            <div class="text_dep">RECETTE</div>
+            {% endif %}
+            <div class="container_bon">
+                <div class="bon ml-3">
+                    <div class="title_bon">BÉNÉFICIAIRE :</div>
+                    <div class="ml-2 text-print">{{bon_caisse.beneficiaire}}</div>
+                </div>
+                <div class="bon ml-3">
+                    <div class="title_bon">MONTANT EN CHIFFRE :</div>
+                    <div class="ml-2 text-print"> {{bon_caisse.montant}}</div>
+                </div>
+                <div class="bon ml-3">
+                    <div class="title_bon">MONTANT EN LETTRE :</div>
+                    <div class="ml-2 text-print">{{montant_lettre}}</div>
+                </div>
+                <div class="bon ml-3">
+                    <div class="title_bon">MOTIF:</div>
+                    <div class="ml-2">{{bon_caisse.motif}}</div>
+                </div>
+
+                <div class="signature ml-3">
+                    <div>SIGNATURE DU BÉNÉFICIARE</div>
+                    <div class="ml-2 ">SIGNATURE DU COMPTABLE</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
-    <!--Script data table-->
-    <script src="./static/vendors/jquery/dist/jquery.min.js"></script>
-    <script src="./static/vendors/popper.js/dist/umd/popper.min.js"></script>
-    <script src="./static/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="./static/assets/js/main.js"></script>
-
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-    <script src="./static/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="./static/vendors/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-    <script src="./static/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="./static/vendors/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
-    <script src="./static/vendors/jszip/dist/jszip.min.js"></script>
-    <script src="./static/vendors/pdfmake/build/pdfmake.min.js"></script>
-    <script src="./static/vendors/pdfmake/build/vfs_fonts.js"></script>
-    <script src="./static/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="./static/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="./static/vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
-    <script src="./static/assets/js/init-scripts/data-table/datatables-init.js"></script>
-</div>
-
-
-{% endblock %}
+</body>
+</html>

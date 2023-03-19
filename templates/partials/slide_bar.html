@@ -1,6 +1,6 @@
 <!-- Left Panel -->
 
-<aside class="left-panel bg-dark text-white" id="left-panel">
+<aside class="left-panel bg-dark text-white no-print" id="left-panel">
 
     <nav class="navbar navbar-expand-sm navbar-default bg-dark text-white">
 
@@ -13,14 +13,6 @@
 
 
         <div aria-orientation="vertical" class="nav flex-column nav-pills" role="tablist">
-<!--            <a aria-controls="v-pills-home" aria-selected="false" class="nav-link active bg-nav-link d-flex"-->
-<!--               data-target="#id" data-toggle=""-->
-<!--               href="{{url_for('index')}}"-->
-
-<!--               role="tab">-->
-<!--                <h3>Dashbord</h3>-->
-
-<!--            </a>-->
 
             <a aria-controls="v-pills-abattage" aria-selected="true" class="nav-link active bg-nav-link d-flex"
                data-target="#id" data-toggle=""
@@ -51,7 +43,15 @@
                href="{{url_for('generale')}}"
                id="" role="tab">
                 <i class="fa fa-tags"></i>
+
                 &nbsp Générale</a>
         </div>
+
     </nav>
 </aside><!-- /#left-panel -->
+    <script>
+    function changeColor(element) {
+  element.classList.add('clicked');
+}
+
+    </script>

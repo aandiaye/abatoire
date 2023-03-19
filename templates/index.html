@@ -24,33 +24,22 @@
     <link rel="stylesheet" href="/static/vendors/jqvmap/dist/jqvmap.min.css">
     <link rel="stylesheet" href="/static/assets/css/style.css">
     <link rel="stylesheet" href="/static/assets/css/style2.css">
-
+    <link rel="stylesheet" href="/static/assets/css/print.css" media="print">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-    <script>
-      const navLinks = document.querySelectorAll('.nav-link');
-
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          navLinks.forEach(link => link.classList.remove('active'));
-          link.classList.add('active');
-        });
-      });
-    </script>
 </head>
 
 <body>
-
-
     {% include 'partials/slide_bar.html' %}
-
-    <div id="right-panel" class="right-panel"> <!--L'ensemble des elements placés à droite-->
-        {% include 'partials/nav_bar.html' %}<!--Navbar-->
+    <div id="right-panel" class="right-panel "> <!--L'ensemble des elements placés à droite-->
+        <!--Navbar-->
+        <div class="no-print">
+           {% include 'partials/nav_bar.html' %}
+        </div>
 
         {% block content %}
         <!--Lieu d'insertion des differentes pages entre le sidebar et le navbar-->
         {% endblock %}
     </div>
-
 
     <script src="/static/vendors/jquery/dist/jquery.min.js"></script>
     <script src="/static/vendors/popper.js/dist/umd/popper.min.js"></script>
