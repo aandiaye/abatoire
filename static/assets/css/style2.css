@@ -229,37 +229,62 @@ justify-content:center;
 font-size:25px}
 .container_bon{
 }
-.generale{
-padding:20px;
-}
 .periode2{
 display: flex;
+margin-top:30px;
+
 }
+
 .periode{
-padding:20px;
-background-color:#353535;
-width:75%
+display:flex;
+justify-content:center;
 }
 
 .periode1{
 padding-left:10px;
-color:white}
+}
 
 .recherche_periode{
-margin-left:10px;
+margin:10px;
 background-color:yellow;
 height:35px;
 width:150px;
-border-radius: 5px;
+border-radius: 10px;
 border:none;
 cursor: pointer}
 
 .periode3{
 display:flex;
+margin-left:20px;
+margin:30px
 }
 .design_periode{
-width:250px;
-height:35px}
+margin:10px;
+width:300px;
+height:35px;
+padding-left:20px;
+padding-right:20px;
+border:none;
+border-radius:10px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.select_period{
+width:140px;
+height:35px;
+padding-left:10px;
+margin-left:20px;
+border:none;
+border-radius:10px;
+box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+outline:none;
+}
+
+.aff{
+font-size:25px;
+font-weight:700;
+}
+
 
 .select_period{
 width:140px;
@@ -268,7 +293,7 @@ padding-left:10px;
 margin-left:20px}
 
 .pronom{
-color:white}
+font-size: 20px}
 
 .nav-link:active {
   background-color: green;
