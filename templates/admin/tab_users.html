@@ -1,0 +1,39 @@
+{% extends 'admin/dashboard.html' %}
+{%block content%}
+<div class="login-content bg-white">
+    {% if users%}
+    <table>
+        <thead class="bg-success">
+        <tr>
+            <th>Nom d'utilisateur</th>
+            <th>Date de Création</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        {%for user in users%}
+        <tbody>
+        <tr>
+            <td>{{user.identifiant}}</td>
+            <td>{{user.date}}</td>
+            <td>
+                <a class="icon-trash" href="{{url_for('delete_user',user_id=user.id)}}"
+                   onclick="return confirm('Êtes vous sûr de vouloir supprimer ?')">
+                    <button class="btn-danger">
+                        Supprimer
+                    </button>
+                </a>
+
+            </td>
+        </tr>
+        </tbody>
+        {%endfor%}
+    </table>
+    {%else%}
+    <h1>
+        Pas d'utilisateur pour le moment
+    </h1>
+    {%endif%}
+</div>
+
+{%endblock%}
+

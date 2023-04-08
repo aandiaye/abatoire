@@ -1,4 +1,5 @@
 import os
+from flask_bcrypt import Bcrypt
 from datetime import datetime
 from num2words import num2words
 from flask import Flask, render_template, redirect, url_for, request, session, flash
@@ -8,7 +9,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
 basedir = os.path.abspath(os.path.dirname(__file__))
-app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///' + os.path.join(basedir, 'project.db')
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///' + os.path.join(basedir, 'database/project.db')
 # app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///project.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -19,8 +20,7 @@ class Users(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     identifiant = db.Column(db.String(255), nullable=False)
     password = db.Column(db.String(255), nullable=False)
-
-    # date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow().strftime("%d-%m-%Y"))
+    date = db.Column(db.Date, nullable=False, default=datetime.utcnow().date())
 
     def set_password(self, secret):
         self.password = generate_password_hash(secret)
@@ -94,11 +94,53 @@ def login():
 @app.route('/logout')
 def logout():
     session.pop("login", None)
+    session.pop("adminLogin", None)
     return redirect("/")
 
+'''Les pages admins'''
+@app.route("/admin",methods=['POST','GET'])
+def admin():
+    if request.method == 'POST':
+        identifiant="AfamSarlGestion"
+        password = "GestionPack"
+        user = request.form["username"]
+        pwd = request.form["password"]
+        if identifiant == user and password == pwd:
+            session['adminLogin'] = identifiant
+            return redirect(url_for('dashboard'))
+        else:
+            flash("Contacter l'administrateur pour avoir l'autorisation","error")
+            return render_template('login.html')
+    return render_template('admin/login.html')
+@app.route('/dashboard')
+def dashboard():
+    users = Users.query.all()
+    return render_template('admin/tab_users.html', users=users)
+
+@app.route('/adminRegister',methods=['POST','GET'])
+def adminRegister():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        confirm_password = request.form['confirm-password']
+        user_exist = Users.query.filter_by(identifiant=username).first()
+        if password != confirm_password:
+            flash('Mot de passe non conforme','error')
+            return redirect(url_for('adminRegister'))
+        elif user_exist:
+            flash('Un utilisateur avec ce nom existe déjà' ,'error')
+            return redirect(url_for('adminRegister'))
+        else:
+            user = Users(
+                identifiant=username,
+            )
+            user.set_password(password)
+            db.session.add(user)
+            db.session.commit()
+        return redirect(url_for('dashboard'))
+    return render_template('admin/register.html')
+
 '''Les pages abattage'''
-
-
 @app.route("/add_depense_abattage", methods=["GET", "POST"])
 def add_depense_abattage():
     if request.method == "POST":
@@ -371,6 +413,14 @@ def update_depense_loyer(depense_id):
         return redirect(url_for('tab_depense_loyer'))
     return render_template('pages/loyer/update_depense_loyer.html', depense=depense)
 
+@app.route("/delete_user/<int:user_id>", methods=["GET", "POST"])
+def delete_user(user_id):
+    if request.method == "GET":
+        user = Users.query.filter_by(id=user_id).first()
+        db.session.delete(user)
+        db.session.commit()
+        return redirect(url_for('dashboard'))
+    return render_template("admin/tab_users.html")
 
 @app.route("/delete_depense/<int:depense_id>", methods=["GET", "POST"])
 def delete_depense(depense_id):

@@ -1,0 +1,36 @@
+{% extends 'admin/dashboard.html'%}
+{% block content %}
+<div class="login-content">
+
+
+<div class="login-form">
+                    <form method ="post", action="{{url_for('adminRegister')}}">
+                        <div class="text-center">
+                        <h1 class="h2 text-black-900 mb-4">Enregistrement d'un nouvel utilisateur</h1>
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                        <div class=flashes>
+                            {% for category,message in messages %}
+                            <p class="{{category}}">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% endwith %}
+                    </div>
+                        <div class="form-group">
+                            <label>Nom d'utilisateur</label>
+                            <input type="text" class="form-control" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mot de passe</label>
+                            <input type="password" class="form-control" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Confirmer mot de passe</label>
+                            <input type="password" class="form-control" name="confirm-password" required>
+                        </div>
+                            <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Enregistrer</button>
+                    </form>
+                </div>
+    </div>
+{%endblock%}
