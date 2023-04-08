@@ -1,6 +1,13 @@
 {% extends 'index.html' %}
 {% block content %}
 
+{% include 'partials/slide_bar_betail.html' %}
+<div id="" class="right-panel "> <!--L'ensemble des elements placés à droite-->
+        <!--Navbar-->
+        <div class="no-print">
+           {% include 'partials/nav_bar.html' %}
+        </div>
+
 <div class="col-lg-10 mt-3  ml-5">
     <div class="card ml-5">
         <div class="card-header">
@@ -56,4 +63,5 @@
 </div>
 
 
+   </div>
 {% endblock %}

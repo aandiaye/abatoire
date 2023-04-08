@@ -1,5 +1,13 @@
 {% extends 'index.html' %}
 {% block content %}
+
+{% include 'partials/slide_bar_betail.html' %}
+<div id="" class="right-panel "> <!--L'ensemble des elements placés à droite-->
+        <!--Navbar-->
+        <div class="no-print">
+           {% include 'partials/nav_bar.html' %}
+        </div>
+
 <div class="breadcrumbs  ">
     <div class="col-sm-5 mt-3">
         <div class="page-header float-right">
@@ -118,4 +126,5 @@
 <script src="./static/vendors/datatables.net-buttons/js/buttons.colVis.min.js"></script>
 <script src="./static/assets/js/init-scripts/data-table/datatables-init.js"></script>
 
+   </div>
 {% endblock %}
