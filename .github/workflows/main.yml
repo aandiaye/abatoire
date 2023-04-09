@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: azizprog/abattoir:${{ github.sha }}-$(echo $(date +%Y%m%d%H%M%S))
+          tags: azizprog/abattoir:${{ github.sha }}
