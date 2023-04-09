@@ -75,10 +75,11 @@ def index():
 @app.route("/login", methods=['POST', 'GET'])
 def login():
     if request.method == 'POST':
-        identifiant = request.form["email"]
+        identifiant = request.form["username"]
         password = request.form["password"]
+        #password_hash=Users.check_password(password)
         user = Users.query.filter_by(identifiant=identifiant).first()
-        if user and user.password == password:
+        if user and user.check_password(password):
             session["login"] = user.identifiant
             return redirect(url_for('tab_depense_abattage'))
         else:
@@ -109,7 +110,7 @@ def admin():
             session['adminLogin'] = identifiant
             return redirect(url_for('dashboard'))
         else:
-            flash("Contacter l'administrateur pour avoir l'autorisation","error")
+            # flash("Contacter l'administrateur pour avoir l'autorisation","error")
             return render_template('login.html')
     return render_template('admin/login.html')
 @app.route('/dashboard')
@@ -508,4 +509,4 @@ def bon_recette(bon_recette_id):
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(port=3000, debug=True)
+    app.run(debug=True,host='0.0.0.0',port=3000)
