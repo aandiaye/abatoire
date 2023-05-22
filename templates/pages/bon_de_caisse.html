@@ -41,15 +41,15 @@
             <div class="m-3"><img src="/static/images/logoAFAM.jpg" width="50px"/></div>
             <h3 class="text_recu">BON DE CAISSE</h3>
             <div class="date_bon" style="">
-                <div class="title_bon">DATE :</div>
-                <div class="ml-2"> {{bon_caisse.date}}</div>
+                <div class="title_bon">DATE </div> <div style="margin-left:10px"> : </div>
+                <div style="margin-left:10px" class="ml-2"> {{bon_caisse.date}}</div>
             </div>
         </div>
 
         <div>
             <div class="bon ml-3">
-                <div class="title_bon">NUMÉRO DU REÇU :</div>
-                <div class="ml-2 text-print"> {{bon_caisse.id}}</div>
+                <div class="title_bon">NUMÉRO DU REÇU </div> <div style="margin-left:10px"> : </div>
+                <div style="margin-left:10px" class="ml-2 text-print"> N° ABAT 0001</div>
             </div>
             {%if bon_caisse.type_table=='depense'%}
             <div class="text_dep">DEPENSE</div>
@@ -58,25 +58,25 @@
             {% endif %}
             <div class="container_bon">
                 <div class="bon ml-3">
-                    <div class="title_bon">BÉNÉFICIAIRE :</div>
-                    <div class="ml-2 text-print">{{bon_caisse.beneficiaire}}</div>
+                    <div class="title_bon">DEPOSANT </div> <div style="margin-left:10px"> : </div>
+                    <div style="margin-left:10px" class="ml-2 text-print">{{bon_caisse.beneficiaire}}</div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MONTANT EN CHIFFRE :</div>
-                    <div class="ml-2 text-print"> {{bon_caisse.montant}}</div>
+                    <div class="title_bon">MONTANT EN CHIFFRE  </div> <div style="margin-left:10px"> : </div>
+                    <div style="margin-left:10px" class="ml-2 text-print"> {{bon_caisse.montant}} Francs CFA</div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MONTANT EN LETTRE :</div>
-                    <div class="ml-2 text-print">{{montant_lettre}}</div>
+                    <div class="title_bon">MONTANT EN LETTRE </div> <div style="margin-left:10px"> : </div>
+                    <div style="margin-left:10px" class="ml-2 text-print">{{montant_lettre}} Francs CFA</div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MOTIF:</div>
-                    <div class="ml-2">{{bon_caisse.motif}}</div>
+                    <div class="title_bon">MOTIF </div> <div style="margin-left:10px"> : </div>
+                    <div style="margin-left:10px" class="ml-2">{{bon_caisse.motif}}</div>
                 </div>
 
                 <div class="signature ml-3">
-                    <div>SIGNATURE DU BÉNÉFICIARE</div>
-                    <div class="ml-2">SIGNATURE DU COMPTABLE</div>
+                    <div>SIGNATURE DU DEPOSANT</div>
+                    <div  class="ml-2">SIGNATURE DU COMPTABLE</div>
                 </div>
             </div>
         </div>
@@ -91,15 +91,15 @@
             <div class="m-3"><img src="/static/images/logoAFAM.jpg" width="50px"/></div>
             <h3 class="text_recu">BON DE CAISSE</h3>
             <div class="date_bon" style="">
-                <div class="title_bon">DATE :</div>
-                <div class="ml-2"> {{bon_caisse.date}}</div>
+                <div class="title_bon">DATE</div> <div style="margin-left:10px"> : </div>
+                <div style="margin-left:10px" class="ml-2"> {{bon_caisse.date}}</div>
             </div>
         </div>
 
         <div>
             <div class="bon ml-3">
-                <div class="title_bon">NUMÉRO DU REÇU :</div>
-                <div class="ml-2 text-print"> {{bon_caisse.id}}</div>
+                <div class="title_bon">NUMÉRO DU REÇU </div> <div style="margin-left:10px"> : </div>
+                <div style="margin-left:10px" class="ml-2 text-print"> N° ABAT 0002</div>
             </div>
             {%if bon_caisse.type_table=='depense'%}
             <div class="text_dep">DEPENSE</div>
@@ -108,24 +108,24 @@
             {% endif %}
             <div class="container_bon">
                 <div class="bon ml-3">
-                    <div class="title_bon">BÉNÉFICIAIRE :</div>
-                    <div class="ml-2 text-print">{{bon_caisse.beneficiaire}}</div>
+                    <div class="title_bon">DEPOSANT</div> <div style="margin-left:10px"> : </div>
+                    <div style="margin-left:10px" class="ml-2 text-print">{{bon_caisse.beneficiaire}}</div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MONTANT EN CHIFFRE :</div>
-                    <div class="ml-2 text-print"> {{bon_caisse.montant}}</div>
+                    <div class="title_bon">MONTANT EN CHIFFRE </div> <div style="margin-left:10px"> : </div>
+                    <div style="margin-left:10px" class="ml-2 text-print"> {{bon_caisse.montant}} Francs CFA</div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MONTANT EN LETTRE :</div>
-                    <div class="ml-2 text-print">{{montant_lettre}}</div>
+                    <div class="title_bon">MONTANT EN LETTRE </div> <div style="margin-left:10px"> : </div>
+                    <div style="margin-left:10px" class="ml-2 text-print">{{montant_lettre}} Francs CFA</div>
                 </div>
                 <div class="bon ml-3">
-                    <div class="title_bon">MOTIF:</div>
-                    <div class="ml-2">{{bon_caisse.motif}}</div>
+                    <div class="title_bon">MOTIF </div> <div style="margin-left:10px"> : </div>
+                    <div style="margin-left:10px" class="ml-2">{{bon_caisse.motif}}</div>
                 </div>
 
                 <div class="signature ml-3">
-                    <div>SIGNATURE DU BÉNÉFICIARE</div>
+                    <div>SIGNATURE DU DEPOSANT</div>
                     <div class="ml-2 ">SIGNATURE DU COMPTABLE</div>
                 </div>
             </div>
